@@ -1,461 +1,190 @@
+bash
+
+cat > /home/claude/index-chapitre1.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapitre 1 — Portail élève</title>
+<meta charset="UTF-8">
+<title>Chapitre 1 — Ensembles de nombres</title>
+<style>
+  :root {
+    --indigo: #312E81;
+    --bleu: #0369A1;
+    --vert: #166534;
+    --orange: #B45309;
+    --teal: #0D9488;
+    --texte: #1E293B;
+    --texte-secondaire: #64748B;
+    --fond: #F8FAFC;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background: linear-gradient(135deg, var(--indigo), var(--bleu));
+    color: white;
+    padding: 50px 30px 40px;
+    text-align: center;
+  }
+  header .kicker {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+  header h1 {
+    font-size: 34px;
+    margin: 10px 0 6px;
+  }
+  header p { font-size: 16px; opacity: 0.9; margin: 0; }
 
-  <style>
-    :root {
-      /* Couleurs volontairement centralisées pour pouvoir reprendre
-         exactement les variables de ta charte CSS ensuite. */
-      --navy: #243447;
-      --blue: #3f6f9f;
-      --blue-light: #edf3f8;
-      --green: #4f8a67;
-      --green-light: #edf6f0;
-      --orange: #d58a3a;
-      --orange-light: #fff4e8;
-      --grey-100: #f5f6f7;
-      --grey-200: #e5e8eb;
-      --grey-500: #6c757d;
-      --white: #ffffff;
-      --shadow: 0 8px 24px rgba(36, 52, 71, 0.08);
-      --radius: 16px;
-    }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 70px;
+  }
 
-    * { box-sizing: border-box; }
+  .seance {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+    padding: 26px 30px;
+    margin-bottom: 26px;
+    border-left: 8px solid var(--bleu);
+  }
+  .seance h2 {
+    font-size: 22px;
+    margin: 0 0 6px;
+    color: var(--indigo);
+  }
+  .seance .sous-titre {
+    font-size: 15px;
+    color: var(--texte-secondaire);
+    margin-bottom: 18px;
+  }
 
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--navy);
-      background: var(--grey-100);
-      line-height: 1.5;
-    }
+  .ressources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid transparent;
+    transition: transform 0.15s ease;
+  }
+  .lien:hover { transform: translateY(-2px); }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  .lien.cours { background: #EFF6FF; color: var(--bleu); border-color: var(--bleu); }
+  .lien.exercice { background: #FFFBEB; color: var(--orange); border-color: var(--orange); }
+  .lien.carte { background: #F0FDF4; color: var(--vert); border-color: var(--vert); }
+  .lien.schema { background: #F0FDFA; color: var(--teal); border-color: var(--teal); }
 
-    .page {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 42px 0 60px;
-    }
+  .a-venir {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    background: #F1F5F9;
+    color: var(--texte-secondaire);
+    border: 2px dashed #CBD5E1;
+  }
 
-    .hero {
-      background: var(--white);
-      border-radius: 22px;
-      padding: 34px 38px;
-      box-shadow: var(--shadow);
-      border-left: 7px solid var(--blue);
-      margin-bottom: 26px;
-    }
+  .bilan {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+    padding: 26px 30px;
+    border-left: 8px solid var(--indigo);
+    text-align: center;
+  }
+  .bilan h2 { color: var(--indigo); margin-top: 0; }
 
-    .eyebrow {
-      margin: 0 0 6px;
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.1;
-    }
-
-    .subtitle {
-      margin: 12px 0 0;
-      color: var(--grey-500);
-      font-size: 17px;
-      max-width: 760px;
-    }
-
-    .progress-area {
-      margin-top: 24px;
-    }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .progress-bar {
-      height: 10px;
-      margin-top: 8px;
-      overflow: hidden;
-      border-radius: 99px;
-      background: var(--grey-200);
-    }
-
-    #progressFill {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--green);
-      transition: width .3s ease;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--grey-200);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 4px 14px rgba(36, 52, 71, 0.04);
-      display: flex;
-      flex-direction: column;
-      min-height: 220px;
-    }
-
-    .card-wide {
-      grid-column: 1 / -1;
-    }
-
-    .icon {
-      width: 46px;
-      height: 46px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: var(--blue-light);
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .card.green .icon {
-      background: var(--green-light);
-    }
-
-    .card.orange .icon {
-      background: var(--orange-light);
-    }
-
-    h2 {
-      margin: 0 0 7px;
-      font-size: 22px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--grey-500);
-      font-size: 15px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: flex-start;
-      margin-top: auto;
-      padding: 11px 17px;
-      border-radius: 10px;
-      background: var(--navy);
-      color: var(--white);
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform .15s ease, opacity .15s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      opacity: .92;
-    }
-
-    .card.green .button {
-      background: var(--green);
-    }
-
-    .card.orange .button {
-      background: var(--orange);
-    }
-
-    .review {
-      margin-top: 18px;
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 24px;
-      border: 1px solid var(--grey-200);
-    }
-
-    .review h2 {
-      margin-bottom: 4px;
-    }
-
-    .review p {
-      color: var(--grey-500);
-      margin-top: 0;
-    }
-
-    .review-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .review-item {
-      border: 1px solid var(--grey-200);
-      border-radius: 12px;
-      padding: 14px 16px;
-      background: var(--grey-100);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .review-item strong {
-      display: block;
-      font-size: 15px;
-    }
-
-    .review-item span {
-      color: var(--grey-500);
-      font-size: 13px;
-    }
-
-    .review-item .button {
-      margin: 0;
-      padding: 8px 12px;
-      white-space: nowrap;
-      font-size: 13px;
-    }
-
-    footer {
-      margin-top: 28px;
-      text-align: center;
-      color: var(--grey-500);
-      font-size: 13px;
-    }
-
-    @media (max-width: 720px) {
-      .page {
-        width: min(100% - 24px, 600px);
-        padding-top: 20px;
-      }
-
-      .hero {
-        padding: 26px 24px;
-      }
-
-      .grid,
-      .review-list {
-        grid-template-columns: 1fr;
-      }
-
-      .card-wide {
-        grid-column: auto;
-      }
-    }
-  </style>
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: var(--texte-secondaire);
+  }
+</style>
 </head>
-
 <body>
-  <main class="page">
 
-    <section class="hero">
-      <p class="eyebrow">Maths Premium · Seconde</p>
-      <h1>Chapitre 1 — Les ensembles de nombres</h1>
-      <p class="subtitle">
-        Ton espace de travail pour apprendre, t’entraîner et vérifier tes progrès.
-      </p>
+<header>
+  <div class="kicker">Thème 1 · Mathématiques Seconde</div>
+  <h1>Chapitre 1 — Ensembles de nombres</h1>
+  <p>Ensembles N, Z, D, Q, R · Intervalles · Union et intersection · Valeur absolue</p>
+</header>
 
-      <div class="progress-area">
-        <div class="progress-top">
-          <span>Progression du chapitre</span>
-          <span id="progressText">0 / 4 ressources validées</span>
-        </div>
-        <div class="progress-bar">
-          <div id="progressFill"></div>
-        </div>
-      </div>
-    </section>
+<main>
 
-    <section class="grid">
+  <div class="seance">
+    <h2>Séance 1 — Ensembles N, Z, D, Q, R et inclusions</h2>
+    <p class="sous-titre">Support de cours complet (définitions, méthode, exemple guidé, exercices).</p>
+    <div class="ressources">
+      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-01-Ensembles-de-nombres.md">📘 Support de cours</a>
+      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
+    </div>
+  </div>
 
-      <article class="card">
-        <div class="icon">🎯</div>
-        <h2>Quiz de positionnement</h2>
-        <p>
-          Commence ici pour vérifier ce que tu maîtrises déjà avant de travailler le chapitre.
-        </p>
-        <a class="button track-link"
-           data-resource="positionnement"
-           href="quiz-positionnement/index.html">
-          Commencer le quiz →
-        </a>
-      </article>
+  <div class="seance">
+    <h2>Séance 2 — Intervalles de R, union et intersection</h2>
+    <p class="sous-titre">Support de cours + schéma illustré de l'union et de l'intersection d'intervalles.</p>
+    <div class="ressources">
+      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-02-Intervalles.md">📘 Support de cours</a>
+      <a class="lien schema" href="schema-intervalles-union-intersection.svg">📐 Schéma union/intersection</a>
+      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
+    </div>
+  </div>
 
-      <article class="card">
-        <div class="icon">📘</div>
-        <h2>Support de cours</h2>
-        <p>
-          Le cours complet, présenté de façon progressive avec les méthodes et les exemples essentiels.
-        </p>
-        <a class="button track-link"
-           data-resource="cours"
-           href="cours/index.html">
-          Ouvrir le cours →
-        </a>
-      </article>
+  <div class="seance">
+    <h2>Séance 3 — Valeur absolue</h2>
+    <p class="sous-titre">Support de cours, exercices interactifs avec correction en direct et carte mentale à remplir.</p>
+    <div class="ressources">
+      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-03-Valeur-absolue.md">📘 Support de cours</a>
+      <a class="lien exercice" href="exercices-valeur-absolue-interactif.html">✏️ Exercices interactifs</a>
+      <a class="lien carte" href="carte-mentale-valeur-absolue-interactive.html">🧠 Carte mentale à compléter</a>
+    </div>
+  </div>
 
-      <article class="card green">
-        <div class="icon">✏️</div>
-        <h2>Exercices interactifs</h2>
-        <p>
-          Entraîne-toi directement dans le navigateur et vérifie tes réponses au fur et à mesure.
-        </p>
-        <a class="button track-link"
-           data-resource="exercices"
-           href="exercices/index.html">
-          S'entraîner →
-        </a>
-      </article>
+  <div class="bilan">
+    <h2>🗺️ Bilan du chapitre</h2>
+    <p>Carte mentale récapitulative des 5 notions clés du chapitre.</p>
+    <div class="ressources" style="justify-content:center;">
+      <a class="lien carte" href="chapitre1-maths-carte-mentale.svg">🧠 Voir la carte mentale complète</a>
+    </div>
+  </div>
 
-      <article class="card orange">
-        <div class="icon">🧠</div>
-        <h2>Carte mentale</h2>
-        <p>
-          Une vue d’ensemble du chapitre pour mémoriser les notions, les relations et les méthodes.
-        </p>
-        <a class="button track-link"
-           data-resource="carte"
-           href="carte-mentale/index.html">
-          Voir la carte →
-        </a>
-      </article>
+</main>
 
-      <article class="card card-wide">
-        <div class="icon">🏆</div>
-        <h2>Ton bilan</h2>
-        <p id="bilanText">
-          Commence une activité pour construire progressivement ton bilan de chapitre.
-        </p>
-      </article>
+<footer>
+  Chapitre 1 — Mathématiques Seconde · Soutien scolaire
+</footer>
 
-    </section>
-
-    <section class="review">
-      <h2>🔁 Les rappels à ne pas oublier</h2>
-      <p>
-        Pour mieux mémoriser, retrouve une version courte de la carte mentale à intervalles réguliers.
-      </p>
-
-      <div class="review-list">
-        <div class="review-item">
-          <div>
-            <strong>Rappel J+7</strong>
-            <span>Réactive les notions essentielles.</span>
-          </div>
-          <a class="button track-link"
-             data-resource="rappel-j7"
-             href="carte-mentale/rappel-j7.html">
-            Réviser →
-          </a>
-        </div>
-
-        <div class="review-item">
-          <div>
-            <strong>Rappel J+21</strong>
-            <span>Vérifie que les connaissances sont installées.</span>
-          </div>
-          <a class="button track-link"
-             data-resource="rappel-j21"
-             href="carte-mentale/rappel-j21.html">
-            Réviser →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      Maths Premium · Chapitre 1
-    </footer>
-
-  </main>
-
-  <script>
-    /*
-      Suivi local de progression.
-      Les données restent dans le navigateur de l'élève.
-      Elles pourront ensuite être remplacées par une vraie base de données
-      si un suivi enseignant/parents est ajouté.
-    */
-
-    const STORAGE_KEY = "maths-premium-chapitre-1";
-
-    const resources = [
-      "positionnement",
-      "cours",
-      "exercices",
-      "carte"
-    ];
-
-    function getProgress() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-      } catch {
-        return {};
-      }
-    }
-
-    function saveProgress(resource) {
-      const progress = getProgress();
-      progress[resource] = {
-        done: true,
-        date: new Date().toISOString()
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const progress = getProgress();
-      const completed = resources.filter(r => progress[r]?.done).length;
-      const percent = Math.round((completed / resources.length) * 100);
-
-      document.getElementById("progressFill").style.width = percent + "%";
-      document.getElementById("progressText").textContent =
-        `${completed} / ${resources.length} ressources validées`;
-
-      const bilan = document.getElementById("bilanText");
-
-      if (completed === 0) {
-        bilan.textContent =
-          "Commence une activité pour construire progressivement ton bilan de chapitre.";
-      } else if (completed < resources.length) {
-        bilan.textContent =
-          `Tu as déjà commencé ton parcours : ${completed} ressource${completed > 1 ? "s" : ""} sur ${resources.length} validée${completed > 1 ? "s" : ""}. Continue !`;
-      } else {
-        bilan.textContent =
-          "🎉 Bravo ! Tu as parcouru les quatre ressources principales du chapitre.";
-      }
-    }
-
-    document.querySelectorAll(".track-link").forEach(link => {
-      link.addEventListener("click", () => {
-        const resource = link.dataset.resource;
-        if (resource && resources.includes(resource)) {
-          saveProgress(resource);
-        }
-      });
-    });
-
-    updateProgress();
-  </script>
 </body>
 </html>
+HTMLEOF
+cp /home/claude/index-chapitre1.html /mnt/user-data/outputs/
+Output
+
+exit code 0
+
+
+
+
+
