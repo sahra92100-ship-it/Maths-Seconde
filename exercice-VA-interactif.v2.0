@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices interactifs — Valeur absolue</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['$', '$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --niveau1: #15803D;
+    --niveau2: #f5a433;
+    --niveau3: #f75e05;
+    --niveau4: #8b0505;
+    --exercice: #1E40AF;
+    --exercice-fond: #EFF6FF;
+    --correction: #475569;
+    --correction-fond: #F8FAFC;
+    --texte: #1E293B;
+    --ok: #16A34A;
+    --ok-fond: #F0FDF4;
+    --erreur: #DC2626;
+    --erreur-fond: #FEF2F2;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #FFFFFF;
+    color: var(--texte);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--exercice);
+    border-bottom: 4px solid var(--exercice);
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+  }
+  .consigne {
+    font-size: 15px;
+    color: #64748B;
+    font-style: italic;
+    margin-bottom: 26px;
+  }
+  .bloc-exercice {
+    background: var(--exercice-fond);
+    border-radius: 14px;
+    padding: 20px 26px;
+    margin: 22px 0;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+  }
+  .bloc-exercice.niveau-1 { border-left: 10px solid var(--niveau1); }
+  .bloc-exercice.niveau-2 { border-left: 10px solid var(--niveau2); }
+  .bloc-exercice.niveau-3 { border-left: 10px solid var(--niveau3); }
+  .bloc-exercice.niveau-4 { border-left: 10px solid var(--niveau4); }
+
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .niveau-1 .badge { background: var(--niveau1); }
+  .niveau-2 .badge { background: var(--niveau2); }
+  .niveau-3 .badge { background: var(--niveau3); }
+  .niveau-4 .badge { background: var(--niveau4); }
+
+  .question-titre { font-weight: 700; margin: 14px 0 8px; }
+
+  .ligne-reponse {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .ligne-reponse label { min-width: 90px; }
+  .ligne-reponse input[type="text"] {
+    padding: 6px 10px;
+    border: 2px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 15px;
+    width: 140px;
+  }
+  .ligne-reponse input.correct { border-color: var(--ok); background: var(--ok-fond); }
+  .ligne-reponse input.incorrect { border-color: var(--erreur); background: var(--erreur-fond); }
+  .icone { font-weight: 800; font-size: 18px; }
+  .icone.ok { color: var(--ok); }
+  .icone.ko { color: var(--erreur); }
+
+  .btn-verifier {
+    margin-top: 14px;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 20px;
+    background: var(--exercice);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-verifier:hover { background: #1e3a8a; }
+
+  .btn-solution {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: var(--correction);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-solution:hover { background: #334155; }
+
+  .bloc-correction {
+    display: none;
+    background: var(--correction-fond);
+    border-left: 8px solid var(--correction);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .bloc-correction.visible { display: block; }
+
+  .score {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Exercices interactifs — Valeur absolue</h1>
+<p class="consigne">Écris ta réponse dans chaque case, puis clique sur « Vérifier ». Pour une équation à deux solutions, sépare-les par un point-virgule (ex : 5;-5).</p>
+
+<!-- NIVEAU 1 -->
+<div class="bloc-exercice niveau-1" id="ex1">
+  <span class="badge">Niveau 1 — Automatisme</span>
+
+  <p class="question-titre">Exercice 1 — Calculer :</p>
+  <div class="ligne-reponse"><label>$|8|$ =</label><input type="text" data-answers="8"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|-5|$ =</label><input type="text" data-answers="5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|0|$ =</label><input type="text" data-answers="0"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|-12|$ =</label><input type="text" data-answers="12"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|3,5|$ =</label><input type="text" data-answers="3.5|3,5"><span class="icone"></span></div>
+
+  <p class="question-titre">Exercice 2 — Calculer :</p>
+  <div class="ligne-reponse"><label>$|7-2|$ =</label><input type="text" data-answers="5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|2-7|$ =</label><input type="text" data-answers="5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|-3-4|$ =</label><input type="text" data-answers="7"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|5-5|$ =</label><input type="text" data-answers="0"><span class="icone"></span></div>
+
+  <button class="btn-verifier" onclick="verifier('ex1')">Vérifier</button>
+  <div class="score" id="score-ex1"></div>
+</div>
+
+<!-- NIVEAU 2 -->
+<div class="bloc-exercice niveau-2" id="ex2">
+  <span class="badge">Niveau 2 — Application</span>
+
+  <p class="question-titre">Exercice 3 — Calculer :</p>
+  <div class="ligne-reponse"><label>$|-9+4|$ =</label><input type="text" data-answers="5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|3-8|+|-2|$ =</label><input type="text" data-answers="7"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|-6|\times|-3|$ =</label><input type="text" data-answers="18"><span class="icone"></span></div>
+
+  <p class="question-titre">Exercice 4 — Distance entre A et B sur une droite graduée :</p>
+  <div class="ligne-reponse"><label>A(-4), B(3) :</label><input type="text" data-answers="7"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>A(2), B(-7) :</label><input type="text" data-answers="9"><span class="icone"></span></div>
+
+  <button class="btn-verifier" onclick="verifier('ex2')">Vérifier</button>
+  <div class="score" id="score-ex2"></div>
+</div>
+
+<!-- NIVEAU 3 -->
+<div class="bloc-exercice niveau-3" id="ex3">
+  <span class="badge">Niveau 3 — Réflexion</span>
+
+  <p class="question-titre">Exercice 5 — Résoudre (sépare par ; si deux solutions) :</p>
+  <div class="ligne-reponse"><label>$|x|=5$ →</label><input type="text" data-answers="5;-5|-5;5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|x-2|=3$ →</label><input type="text" data-answers="5;-1|-1;5"><span class="icone"></span></div>
+  <div class="ligne-reponse"><label>$|x+1|=0$ →</label><input type="text" data-answers="-1"><span class="icone"></span></div>
+
+  <p class="question-titre">Exercice 6 — $x<0$. Simplifier $|x|+x$ :</p>
+  <div class="ligne-reponse"><label>Résultat =</label><input type="text" data-answers="0"><span class="icone"></span></div>
+
+  <button class="btn-verifier" onclick="verifier('ex3')">Vérifier</button>
+  <div class="score" id="score-ex3"></div>
+</div>
+
+<!-- NIVEAU 4 -->
+<div class="bloc-exercice niveau-4" id="ex4">
+  <span class="badge">Niveau 4 — Type brevet</span>
+
+  <p class="question-titre">Exercice 7 — Résoudre $|x-3|\leq 2$ :</p>
+  <div class="ligne-reponse"><label>Intervalle =</label><input type="text" data-answers="[1;5]|1;5"><span class="icone"></span></div>
+  <p style="font-size:14px; color:#64748B; margin-top:-4px;">Représente ensuite l'ensemble des solutions sur une droite graduée (sur ton cahier).</p>
+
+  <p class="question-titre">Exercice 8 — Démonstration :</p>
+  <p style="font-size:15px;">Montre, à l'aide d'un exemple numérique, que $|a+b|=|a|+|b|$ n'est pas toujours vraie. Dans quel cas particulier reste-t-elle vraie ? <em>(rédige ta réponse sur ton cahier, puis vérifie avec le corrigé)</em></p>
+
+  <button class="btn-verifier" onclick="verifier('ex4')">Vérifier l'exercice 7</button>
+  <button class="btn-solution" onclick="toggle('sol8')">Voir le corrigé de l'exercice 8</button>
+  <div class="score" id="score-ex4"></div>
+
+  <div class="bloc-correction" id="sol8">
+    Contre-exemple : $a=3$, $b=-5$. Alors $|a+b|=|-2|=2$ mais $|a|+|b|=3+5=8$, donc $2\neq 8$.<br>
+    L'égalité reste vraie uniquement lorsque $a$ et $b$ sont de <strong>même signe</strong> (tous deux positifs ou tous deux négatifs).
+  </div>
+</div>
+
+<script>
+function normalize(str) {
+  return str.trim().toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+}
+
+function verifier(blocId) {
+  const bloc = document.getElementById(blocId);
+  const inputs = bloc.querySelectorAll('input[type="text"]');
+  let correctCount = 0;
+
+  inputs.forEach(input => {
+    const accepted = input.getAttribute('data-answers').split('|').map(normalize);
+    const value = normalize(input.value);
+    const icone = input.nextElementSibling;
+
+    if (accepted.includes(value) && value !== '') {
+      input.classList.remove('incorrect');
+      input.classList.add('correct');
+      icone.textContent = '✓';
+      icone.className = 'icone ok';
+      correctCount++;
+    } else {
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+      icone.textContent = '✗';
+      icone.className = 'icone ko';
+    }
+  });
+
+  const scoreDiv = document.getElementById('score-' + blocId);
+  scoreDiv.textContent = correctCount + ' / ' + inputs.length + ' bonnes réponses';
+  scoreDiv.style.color = correctCount === inputs.length ? '#16A34A' : '#DC2626';
+}
+
+function toggle(id) {
+  document.getElementById(id).classList.toggle('visible');
+}
+</script>
+
+</body>
+</html>
