@@ -9,130 +9,256 @@
     <style>
         :root {
             --indigo: #312E81;
-            --bleu: #0B4F6C;
-            --chapitre-fond: #F1F5FF;
-            --chapitre-numero: #252285;
-            --chapitre-titre: #0369A1;
+            --indigo-clair: #EDEDFB;
+
+            --bleu: #0369A1;
+            --bleu-clair: #F0F9FF;
+
+            --vert: #166534;
+            --vert-clair: #F0FDF4;
+
+            --orange: #B45309;
+            --orange-clair: #FFFBEB;
+
             --texte: #1E293B;
             --texte-secondaire: #64748B;
+
             --bordure: #E2E8F0;
             --fond: #F8FAFC;
             --blanc: #FFFFFF;
-            --rayon: 14px;
-            --ombre: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+            --rayon: 16px;
+            --ombre: 0 5px 18px rgba(15, 23, 42, 0.07);
+            --ombre-hover: 0 10px 28px rgba(15, 23, 42, 0.11);
         }
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             background: var(--fond);
             color: var(--texte);
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ================================
+           CONTENEUR
+        ================================= */
+
         .page {
-            width: min(1100px, calc(100% - 40px));
+            width: min(1120px, calc(100% - 48px));
             margin: 0 auto;
         }
 
+        /* ================================
+           HEADER
+        ================================= */
+
         header {
-            padding: 45px 0 25px;
+            padding: 32px 0 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .kicker {
-            display: block;
-            margin-bottom: 8px;
-
-            color: var(--chapitre-numero);
-
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        header h1 {
-            margin: 0;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
             color: var(--indigo);
 
-            font-size: 42px;
+            font-size: 19px;
             font-weight: 800;
+            letter-spacing: -0.2px;
         }
 
-        .intro {
-            padding: 55px 0 45px;
-        }
+        .brand-mark {
+            width: 36px;
+            height: 36px;
 
-        .intro h2 {
-            margin: 0 0 18px;
-
-            color: var(--chapitre-numero);
-
-            font-size: 52px;
-            line-height: 1.1;
-        }
-
-        .intro p {
-            max-width: 700px;
-            margin: 0;
-
-            color: var(--texte-secondaire);
-
-            font-size: 21px;
-            line-height: 1.5;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-
-            margin: 20px 0 25px;
-        }
-
-        .section-number {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            width: 45px;
-            height: 45px;
+            border-radius: 10px;
 
-            border-radius: 12px;
+            background: var(--indigo);
+            color: white;
 
-            background: var(--chapitre-fond);
-            color: var(--chapitre-numero);
-
+            font-size: 17px;
             font-weight: 800;
         }
 
-        .section-title h2 {
-            margin: 0;
+        .header-label {
+            color: var(--texte-secondaire);
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            position: relative;
+
+            margin-top: 18px;
+            padding: 46px 52px 48px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #F1F5FF 0%,
+                    #F8FAFF 62%,
+                    #F0F9FF 100%
+                );
+
+            border: 1px solid #E0E7FF;
+
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            right: -70px;
+            bottom: -110px;
+
+            border-radius: 50%;
+
+            background: rgba(49, 46, 129, 0.06);
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 16px;
 
             color: var(--bleu);
 
-            font-size: 30px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .section-title p {
-            margin: 2px 0 0;
+        .hero-kicker::before {
+            content: "";
+
+            width: 24px;
+            height: 3px;
+
+            border-radius: 3px;
+
+            background: var(--bleu);
+        }
+
+        .hero h1 {
+            max-width: 720px;
+
+            margin: 0 0 15px;
+
+            color: var(--indigo);
+
+            font-size: 43px;
+            line-height: 1.12;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--bleu);
+        }
+
+        .hero p {
+            max-width: 680px;
+
+            margin: 0;
 
             color: var(--texte-secondaire);
+
+            font-size: 18px;
+            line-height: 1.55;
         }
 
-        .card {
+        /* ================================
+           SECTION
+        ================================= */
+
+        .section {
+            margin-top: 46px;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 6px;
+
+            color: var(--texte-secondaire);
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            color: var(--texte);
+
+            font-size: 27px;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            margin: 7px 0 0;
+
+            color: var(--texte-secondaire);
+
+            font-size: 15px;
+        }
+
+        /* ================================
+           CARTE SECONDE
+        ================================= */
+
+        .level-card {
             display: block;
 
-            padding: 30px;
+            position: relative;
+
+            padding: 28px 30px;
 
             border: 1px solid var(--bordure);
             border-radius: var(--rayon);
 
             background: var(--blanc);
+
             box-shadow: var(--ombre);
 
             transition:
@@ -141,110 +267,116 @@
                 border-color .2s ease;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
+        .level-card:hover {
+            transform: translateY(-3px);
 
-            border-color: var(--chapitre-titre);
+            border-color: #B9DDF0;
 
-            box-shadow:
-                0 10px 25px rgba(15, 23, 42, 0.12);
+            box-shadow: var(--ombre-hover);
         }
 
-        .card-top {
+        .level-main {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-
-            margin-bottom: 30px;
+            gap: 22px;
         }
 
-        .badge {
-            display: inline-block;
+        .level-icon {
+            flex: 0 0 auto;
 
-            padding: 6px 13px;
+            width: 64px;
+            height: 64px;
 
-            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            background: var(--chapitre-titre);
-            color: white;
+            border-radius: 16px;
 
-            font-size: 13px;
-            font-weight: 700;
-        }
+            background: var(--bleu-clair);
+            color: var(--bleu);
 
-        .arrow {
-            color: var(--chapitre-titre);
             font-size: 25px;
-        }
-
-        .card h3 {
-            margin: 0 0 12px;
-
-            color: var(--chapitre-numero);
-
-            font-size: 32px;
-        }
-
-        .card p {
-            max-width: 650px;
-            margin: 0;
-
-            color: var(--texte-secondaire);
-
-            font-size: 17px;
-            line-height: 1.5;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-top: 28px;
-            padding-top: 18px;
-
-            border-top: 1px solid var(--bordure);
-
-            color: var(--texte-secondaire);
-
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .access {
-            color: var(--chapitre-titre);
             font-weight: 800;
         }
 
-        .future {
-            margin: 60px 0 70px;
-            padding: 25px 30px;
-
-            border-left: 8px solid var(--indigo);
-            border-radius: var(--rayon);
-
-            background: var(--chapitre-fond);
+        .level-content {
+            flex: 1;
         }
 
-        .future h2 {
-            margin: 0 0 8px;
+        .level-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 7px;
+        }
+
+        .level-top h3 {
+            margin: 0;
 
             color: var(--indigo);
 
             font-size: 25px;
         }
 
-        .future p {
+        .status {
+            padding: 4px 9px;
+
+            border-radius: 20px;
+
+            background: var(--vert-clair);
+            color: var(--vert);
+
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .level-content p {
             margin: 0;
 
             color: var(--texte-secondaire);
+
+            font-size: 15px;
+            line-height: 1.45;
         }
 
-        footer {
-            display: flex;
-            justify-content: space-between;
+        .level-arrow {
+            flex: 0 0 auto;
 
-            padding: 25px 0 30px;
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--indigo-clair);
+            color: var(--indigo);
+
+            font-size: 21px;
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
+        }
+
+        .level-card:hover .level-arrow {
+            transform: translateX(3px);
+            background: #E0E0F8;
+        }
+
+        .level-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-top: 22px;
+            padding-top: 17px;
 
             border-top: 1px solid var(--bordure);
 
@@ -253,19 +385,191 @@
             font-size: 13px;
         }
 
-        @media (max-width: 650px) {
+        .level-footer strong {
+            color: var(--bleu);
+        }
 
-            .intro h2 {
-                font-size: 40px;
+        /* ================================
+           NIVEAUX À VENIR
+        ================================= */
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .future-card {
+            padding: 23px 25px;
+
+            border: 1px solid var(--bordure);
+            border-radius: var(--rayon);
+
+            background: #FCFCFD;
+        }
+
+        .future-card .future-label {
+            display: inline-block;
+
+            margin-bottom: 10px;
+
+            padding: 4px 9px;
+
+            border-radius: 20px;
+
+            background: #F1F5F9;
+            color: var(--texte-secondaire);
+
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .future-card h3 {
+            margin: 0 0 6px;
+
+            color: var(--texte);
+
+            font-size: 20px;
+        }
+
+        .future-card p {
+            margin: 0;
+
+            color: var(--texte-secondaire);
+
+            font-size: 14px;
+        }
+
+        /* ================================
+           PRINCIPES
+        ================================= */
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+
+            margin-top: 18px;
+        }
+
+        .principle {
+            padding: 20px;
+
+            border-radius: 13px;
+
+            background: white;
+            border: 1px solid var(--bordure);
+        }
+
+        .principle-icon {
+            margin-bottom: 12px;
+
+            font-size: 22px;
+        }
+
+        .principle h3 {
+            margin: 0 0 6px;
+
+            font-size: 16px;
+            color: var(--texte);
+        }
+
+        .principle p {
+            margin: 0;
+
+            color: var(--texte-secondaire);
+
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 55px;
+            padding: 23px 0 28px;
+
+            border-top: 1px solid var(--bordure);
+
+            color: var(--texte-secondaire);
+
+            font-size: 12px;
+        }
+
+        footer strong {
+            color: var(--indigo);
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+                width: min(100% - 28px, 1120px);
             }
 
-            header h1 {
-                font-size: 32px;
+            header {
+                padding-top: 22px;
+            }
+
+            .header-label {
+                display: none;
+            }
+
+            .hero {
+                padding: 35px 27px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .level-main {
+                gap: 15px;
+            }
+
+            .level-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 13px;
+            }
+
+            .level-top {
+                flex-wrap: wrap;
+            }
+
+            .level-top h3 {
+                font-size: 22px;
+            }
+
+            .level-arrow {
+                width: 36px;
+                height: 36px;
+            }
+
+            .future-grid,
+            .principles {
+                grid-template-columns: 1fr;
             }
 
             footer {
                 flex-direction: column;
-                gap: 6px;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
@@ -275,95 +579,291 @@
 
 <div class="page">
 
+    <!-- ============================
+         HEADER
+    ============================= -->
+
     <header>
-        <span class="kicker">Ressources pédagogiques</span>
-        <h1>Maths Premium</h1>
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                ∑
+            </div>
+
+            <span>Maths Premium</span>
+
+        </div>
+
+        <div class="header-label">
+            Ressources pédagogiques
+        </div>
+
     </header>
 
-    <main>
 
-        <section class="intro">
+    <!-- ============================
+         HERO
+    ============================= -->
 
-            <span class="kicker">Mathématiques</span>
+    <section class="hero">
+
+        <div class="hero-kicker">
+            Mathématiques
+        </div>
+
+        <h1>
+            Votre espace pour
+            <span>apprendre et progresser.</span>
+        </h1>
+
+        <p>
+            Retrouvez des ressources structurées pour comprendre les notions,
+            vous entraîner et suivre votre progression tout au long de l'année.
+        </p>
+
+    </section>
+
+
+    <!-- ============================
+         NIVEAUX
+    ============================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Votre parcours
+            </div>
 
             <h2>
-                Apprendre,<br>
-                comprendre,<br>
-                progresser.
+                Choisissez votre niveau
             </h2>
 
             <p>
-                Un espace de travail structuré pour retrouver les cours,
-                s'entraîner, vérifier ses connaissances et suivre sa progression.
+                Accédez directement aux chapitres et aux ressources disponibles.
             </p>
 
-        </section>
+        </div>
 
 
-        <section>
+        <!-- SECONDE -->
 
-            <div class="section-title">
+        <a
+            href="seconde/index.html"
+            class="level-card"
+        >
 
-                <span class="section-number">01</span>
+            <div class="level-main">
 
-                <div>
-                    <h2>Choisir son niveau</h2>
-                    <p>Les ressources disponibles en mathématiques</p>
+                <div class="level-icon">
+                    2
+                </div>
+
+                <div class="level-content">
+
+                    <div class="level-top">
+
+                        <h3>Seconde</h3>
+
+                        <span class="status">
+                            Disponible
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Le programme complet de mathématiques de Seconde,
+                        organisé en 12 chapitres progressifs.
+                    </p>
+
+                </div>
+
+                <div class="level-arrow">
+                    →
                 </div>
 
             </div>
 
+            <div class="level-footer">
 
-            <a href="seconde/index.html" class="card">
+                <strong>12 chapitres</strong>
 
-                <div class="card-top">
+                <span>·</span>
 
-                    <span class="badge">DISPONIBLE</span>
+                <span>Cours</span>
 
-                    <span class="arrow">→</span>
+                <span>·</span>
 
-                </div>
+                <span>Exercices</span>
 
-                <h3>Seconde</h3>
+                <span>·</span>
+
+                <span>Activités</span>
+
+                <span>·</span>
+
+                <span>Bilans</span>
+
+            </div>
+
+        </a>
+
+    </section>
+
+
+    <!-- ============================
+         AUTRES NIVEAUX
+    ============================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Prochainement
+            </div>
+
+            <h2>
+                Autres niveaux
+            </h2>
+
+        </div>
+
+
+        <div class="future-grid">
+
+            <div class="future-card">
+
+                <span class="future-label">
+                    À venir
+                </span>
+
+                <h3>
+                    Première
+                </h3>
 
                 <p>
-                    Retrouvez l'ensemble des chapitres de mathématiques
-                    de Seconde, organisés pour progresser pas à pas.
+                    Les ressources seront ajoutées progressivement.
                 </p>
 
-                <div class="card-footer">
+            </div>
 
-                    <span>12 chapitres</span>
 
-                    <span class="access">
-                        Accéder à la Seconde →
-                    </span>
+            <div class="future-card">
 
+                <span class="future-label">
+                    À venir
+                </span>
+
+                <h3>
+                    Terminale
+                </h3>
+
+                <p>
+                    Les ressources seront ajoutées progressivement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================
+         PHILOSOPHIE
+    ============================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Une progression pensée pour l'élève
+            </div>
+
+            <h2>
+                Des ressources pour chaque étape
+            </h2>
+
+        </div>
+
+
+        <div class="principles">
+
+            <div class="principle">
+
+                <div class="principle-icon">
+                    📖
                 </div>
 
-            </a>
+                <h3>
+                    Comprendre
+                </h3>
 
-        </section>
+                <p>
+                    Des cours structurés et des explications progressives
+                    pour construire les notions.
+                </p>
+
+            </div>
 
 
-        <section class="future">
+            <div class="principle">
 
-            <h2>Première et Terminale</h2>
+                <div class="principle-icon">
+                    ✏️
+                </div>
 
-            <p>
-                Les ressources seront ajoutées progressivement.
-            </p>
+                <h3>
+                    S'entraîner
+                </h3>
 
-        </section>
+                <p>
+                    Des exercices de difficulté progressive pour automatiser
+                    puis approfondir.
+                </p>
 
-    </main>
+            </div>
 
+
+            <div class="principle">
+
+                <div class="principle-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Vérifier
+                </h3>
+
+                <p>
+                    Des activités et des bilans pour mesurer ses acquis
+                    et identifier les notions à retravailler.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================
+         FOOTER
+    ============================= -->
 
     <footer>
 
-        <span>Maths Premium</span>
+        <span>
+            <strong>Maths Premium</strong>
+        </span>
 
-        <span>Ressources pédagogiques numériques</span>
+        <span>
+            Ressources pédagogiques numériques
+        </span>
 
     </footer>
 
