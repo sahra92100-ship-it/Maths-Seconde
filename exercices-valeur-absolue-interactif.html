@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Valeur absolue</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['$', '$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --niveau1: #15803D;
+    --niveau2: #f5a433;
+    --niveau3: #f75e05;
+    --niveau4: #8b0505;
+    --exercice: #1E40AF;
+    --exercice-fond: #EFF6FF;
+    --correction: #475569;
+    --correction-fond: #F8FAFC;
+    --texte: #1E293B;
+    --texte-secondaire: #64748B;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #FFFFFF;
+    color: var(--texte);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--exercice);
+    border-bottom: 4px solid var(--exercice);
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+  }
+  .bloc-exercice {
+    background: var(--exercice-fond);
+    border-radius: 14px;
+    padding: 20px 26px;
+    margin: 22px 0;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+  }
+  .bloc-exercice.niveau-1 { border-left: 10px solid var(--niveau1); }
+  .bloc-exercice.niveau-2 { border-left: 10px solid var(--niveau2); }
+  .bloc-exercice.niveau-3 { border-left: 10px solid var(--niveau3); }
+  .bloc-exercice.niveau-4 { border-left: 10px solid var(--niveau4); }
+
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .niveau-1 .badge { background: var(--niveau1); }
+  .niveau-2 .badge { background: var(--niveau2); }
+  .niveau-3 .badge { background: var(--niveau3); }
+  .niveau-4 .badge { background: var(--niveau4); }
+
+  .enonce { margin: 10px 0; font-size: 17px; line-height: 1.6; }
+
+  .btn-correction {
+    margin-top: 12px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: var(--correction);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .btn-correction:hover { background: #334155; }
+
+  .bloc-correction {
+    display: none;
+    background: var(--correction-fond);
+    border-left: 8px solid var(--correction);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .bloc-correction.visible { display: block; }
+</style>
+</head>
+<body>
+
+<h1>Exercices — Valeur absolue</h1>
+
+<!-- NIVEAU 1 -->
+<div class="bloc-exercice niveau-1">
+  <span class="badge">Niveau 1 — Automatisme</span>
+  <p class="enonce"><strong>Exercice 1 —</strong> Calculer :<br>
+  a) $|8|$ &nbsp;&nbsp; b) $|-5|$ &nbsp;&nbsp; c) $|0|$ &nbsp;&nbsp; d) $|-12|$ &nbsp;&nbsp; e) $|3,5|$</p>
+  <p class="enonce"><strong>Exercice 2 —</strong> Calculer :<br>
+  a) $|7-2|$ &nbsp;&nbsp; b) $|2-7|$ &nbsp;&nbsp; c) $|-3-4|$ &nbsp;&nbsp; d) $|5-5|$</p>
+  <button class="btn-correction" onclick="toggle('c1')">Voir la correction</button>
+  <div class="bloc-correction" id="c1">
+    <strong>Exercice 1 :</strong> a) $8$ ; b) $5$ ; c) $0$ ; d) $12$ ; e) $3,5$<br>
+    <strong>Exercice 2 :</strong> a) $|5|=5$ ; b) $|-5|=5$ ; c) $|-7|=7$ ; d) $|0|=0$
+  </div>
+</div>
+
+<!-- NIVEAU 2 -->
+<div class="bloc-exercice niveau-2">
+  <span class="badge">Niveau 2 — Application</span>
+  <p class="enonce"><strong>Exercice 3 —</strong> Calculer, en détaillant l'étape intermédiaire :<br>
+  a) $|-9+4|$ &nbsp;&nbsp; b) $|3-8|+|-2|$ &nbsp;&nbsp; c) $|-6|\times|-3|$</p>
+  <p class="enonce"><strong>Exercice 4 —</strong> Sur une droite graduée, calculer la distance entre A et B :<br>
+  a) A d'abscisse $-4$ et B d'abscisse $3$<br>
+  b) A d'abscisse $2$ et B d'abscisse $-7$</p>
+  <button class="btn-correction" onclick="toggle('c2')">Voir la correction</button>
+  <div class="bloc-correction" id="c2">
+    <strong>Exercice 3 :</strong><br>
+    a) $|-9+4|=|-5|=5$<br>
+    b) $|3-8|+|-2|=|-5|+2=5+2=7$<br>
+    c) $|-6|\times|-3|=6\times 3=18$<br><br>
+    <strong>Exercice 4 :</strong><br>
+    a) distance $=|3-(-4)|=|7|=7$<br>
+    b) distance $=|-7-2|=|-9|=9$
+  </div>
+</div>
+
+<!-- NIVEAU 3 -->
+<div class="bloc-exercice niveau-3">
+  <span class="badge">Niveau 3 — Réflexion</span>
+  <p class="enonce"><strong>Exercice 5 —</strong> Résoudre les équations suivantes :<br>
+  a) $|x|=5$ &nbsp;&nbsp; b) $|x-2|=3$ &nbsp;&nbsp; c) $|x+1|=0$</p>
+  <p class="enonce"><strong>Exercice 6 —</strong> $x$ est un nombre tel que $x<0$. Simplifier $|x|+x$.</p>
+  <button class="btn-correction" onclick="toggle('c3')">Voir la correction</button>
+  <div class="bloc-correction" id="c3">
+    <strong>Exercice 5 :</strong><br>
+    a) $|x|=5 \Rightarrow x=5$ ou $x=-5$<br>
+    b) $|x-2|=3 \Rightarrow x=5$ ou $x=-1$<br>
+    c) $|x+1|=0 \Rightarrow x=-1$ (seule solution)<br><br>
+    <strong>Exercice 6 :</strong> Comme $x<0$, $|x|=-x$, donc $|x|+x=-x+x=0$.
+  </div>
+</div>
+
+<!-- NIVEAU 4 -->
+<div class="bloc-exercice niveau-4">
+  <span class="badge">Niveau 4 — Type brevet</span>
+  <p class="enonce"><strong>Exercice 7 —</strong> Résoudre $|x-3|\leq 2$ et représenter l'ensemble des solutions sur une droite graduée.</p>
+  <p class="enonce"><strong>Exercice 8 —</strong> Montrer, à l'aide d'un exemple numérique, que $|a+b|=|a|+|b|$ n'est pas toujours vraie. Dans quel cas particulier reste-t-elle vraie ?</p>
+  <button class="btn-correction" onclick="toggle('c4')">Voir la correction</button>
+  <div class="bloc-correction" id="c4">
+    <strong>Exercice 7 :</strong> $|x-3|\leq 2 \Leftrightarrow -2\leq x-3\leq 2 \Leftrightarrow 1\leq x\leq 5$. Solutions : $[1;5]$.<br><br>
+    <strong>Exercice 8 :</strong> Contre-exemple : $a=3$, $b=-5$. Alors $|a+b|=|-2|=2$ mais $|a|+|b|=3+5=8$, donc $2\neq 8$.
+    L'égalité reste vraie uniquement lorsque $a$ et $b$ sont de même signe.
+  </div>
+</div>
+
+<script>
+function toggle(id) {
+  document.getElementById(id).classList.toggle('visible');
+}
+</script>
+
+</body>
+</html>
