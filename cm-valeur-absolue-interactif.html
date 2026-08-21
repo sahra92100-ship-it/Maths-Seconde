@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Carte mentale interactive — Valeur absolue</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['$', '$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #FFFFFF;
+    color: #1E293B;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #312E81;
+    margin-bottom: 4px;
+  }
+  .consigne {
+    font-size: 15px;
+    color: #64748B;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .carte {
+    position: relative;
+    width: 1200px;
+    height: 870px;
+    margin: 0 auto;
+  }
+  .noeud-central {
+    position: absolute;
+    left: 505px; top: 355px;
+    width: 190px; height: 190px;
+    border-radius: 50%;
+    background: #312E81;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    font-size: 22px; font-weight: 900;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .bulle {
+    position: absolute;
+    width: 300px;
+    border-radius: 20px;
+    border-width: 2.5px;
+    border-style: solid;
+    padding: 12px 18px;
+    text-align: left;
+  }
+  .bulle-titre {
+    text-align: center;
+    font-weight: 800;
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+  .ligne { display: flex; align-items: baseline; gap: 6px; font-size: 15px; margin: 6px 0; flex-wrap: wrap; }
+  .puce { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-right: 2px; }
+
+  input.trou {
+    width: 70px;
+    padding: 3px 6px;
+    border: 2px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+  }
+  input.trou.large { width: 110px; }
+  input.trou.correct { border-color: #16A34A; background: #F0FDF4; }
+  input.trou.incorrect { border-color: #DC2626; background: #FEF2F2; }
+
+  /* Positions des bulles */
+  #b-exemples { left: 85px; top: 236px; border-color: #0D9488; background: #F0FDFA; }
+  #b-exemples .bulle-titre { color: #0D9488; }
+  #b-exemples .puce { background: #0D9488; }
+
+  #b-definition { left: 815px; top: 236px; border-color: #0369A1; background: #F0F9FF; }
+  #b-definition .bulle-titre { color: #0369A1; }
+  #b-definition .puce { background: #0369A1; }
+
+  #b-calcul { left: 815px; top: 536px; border-color: #312E81; background: #E5E4FF; }
+  #b-calcul .bulle-titre { color: #312E81; }
+  #b-calcul .puce { background: #312E81; }
+
+  #b-geo { left: 450px; top: 650px; border-color: #166534; background: #F0FDF4; }
+  #b-geo .bulle-titre { color: #166534; }
+  #b-geo .puce { background: #166534; }
+
+  #b-proprietes { left: 85px; top: 536px; border-color: #B45309; background: #FFFBEB; }
+  #b-proprietes .bulle-titre { color: #B45309; }
+  #b-proprietes .puce { background: #B45309; }
+
+  svg.connecteurs { position: absolute; left: 0; top: 0; width: 1200px; height: 870px; z-index: -1; }
+
+  .barre-actions { margin-top: 20px; }
+  .btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 0 6px;
+  }
+  .btn-verifier { background: #1E40AF; color: white; }
+  .btn-verifier:hover { background: #1e3a8a; }
+  .btn-reset { background: #64748B; color: white; }
+  .btn-reset:hover { background: #475569; }
+
+  .score { margin-top: 14px; font-size: 17px; font-weight: 800; }
+</style>
+</head>
+<body>
+
+<h1>Carte mentale interactive — La valeur absolue</h1>
+<p class="consigne">Complète chaque blanc, puis clique sur « Vérifier ». Utilise ta souris/tactile pour naviguer entre les cases.</p>
+
+<div class="carte">
+
+  <svg class="connecteurs" viewBox="0 0 1200 870">
+    <path d="M528,378 Q440,340 380,330" fill="none" stroke="#0D9488" stroke-width="3"/>
+    <path d="M672,378 Q760,340 820,330" fill="none" stroke="#0369A1" stroke-width="3"/>
+    <path d="M672,522 Q760,560 820,570" fill="none" stroke="#312E81" stroke-width="3"/>
+    <path d="M600,545 Q600,612 600,680" fill="none" stroke="#166534" stroke-width="3"/>
+    <path d="M528,522 Q440,560 380,570" fill="none" stroke="#B45309" stroke-width="3"/>
+  </svg>
+
+  <div class="noeud-central"><div>VALEUR</div><div>ABSOLUE</div></div>
+
+  <!-- EXEMPLES A COMPLETER -->
+  <div class="bulle" id="b-exemples">
+    <div class="bulle-titre">Exemples à compléter</div>
+    <div class="ligne"><span class="puce"></span>$|-7|$ = <input type="text" class="trou" data-answers="7"></div>
+    <div class="ligne"><span class="puce"></span>$|3-8|$ = <input type="text" class="trou" data-answers="5"></div>
+  </div>
+
+  <!-- DEFINITION -->
+  <div class="bulle" id="b-definition">
+    <div class="bulle-titre">Définition</div>
+    <div class="ligne"><span class="puce"></span>$|x|$ représente la <input type="text" class="trou large" data-answers="distance"> entre x et 0</div>
+    <div class="ligne"><span class="puce"></span>$|x|$ est toujours <input type="text" class="trou large" data-answers="positive"> ou nulle</div>
+  </div>
+
+  <!-- CALCUL SELON LE SIGNE -->
+  <div class="bulle" id="b-calcul">
+    <div class="bulle-titre">Calcul selon le signe</div>
+    <div class="ligne"><span class="puce"></span>Si x ≥ 0, alors $|x|$ = <input type="text" class="trou" data-answers="x"></div>
+    <div class="ligne"><span class="puce"></span>Si x &lt; 0, alors $|x|$ = <input type="text" class="trou" data-answers="-x|−x"></div>
+  </div>
+
+  <!-- INTERPRETATION GEOMETRIQUE -->
+  <div class="bulle" id="b-geo" style="width:300px;">
+    <div class="bulle-titre">Interprétation géométrique<br>de |a − b|</div>
+    <div class="ligne"><span class="puce"></span>$|a-b|$ = <input type="text" class="trou large" data-answers="distance"> entre a et b</div>
+    <div class="ligne"><span class="puce"></span>sur une droite <input type="text" class="trou large" data-answers="graduée|graduee"></div>
+    <div class="ligne"><span class="puce"></span>Exemple : $|5-2|$ = <input type="text" class="trou" data-answers="3"></div>
+  </div>
+
+  <!-- PROPRIETES -->
+  <div class="bulle" id="b-proprietes">
+    <div class="bulle-titre">Propriétés</div>
+    <div class="ligne"><span class="puce"></span>$|x| \geq$ <input type="text" class="trou" data-answers="0"></div>
+    <div class="ligne"><span class="puce"></span>$|-x|$ = <input type="text" class="trou" data-answers="|x|"></div>
+    <div class="ligne"><span class="puce"></span>$|x \times y|$ = <input type="text" class="trou" data-answers="|x|"> × <input type="text" class="trou" data-answers="|y|"></div>
+  </div>
+
+</div>
+
+<div class="barre-actions">
+  <button class="btn btn-verifier" onclick="verifierCarte()">Vérifier mes réponses</button>
+  <button class="btn btn-reset" onclick="reinitialiser()">Réinitialiser</button>
+</div>
+<div class="score" id="score"></div>
+
+<script>
+function normalize(str) {
+  return str.trim().toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+}
+
+function verifierCarte() {
+  const inputs = document.querySelectorAll('input.trou');
+  let correctCount = 0;
+
+  inputs.forEach(input => {
+    const accepted = input.getAttribute('data-answers').split('|').map(normalize);
+    const value = normalize(input.value);
+
+    if (accepted.includes(value) && value !== '') {
+      input.classList.remove('incorrect');
+      input.classList.add('correct');
+      correctCount++;
+    } else {
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+    }
+  });
+
+  const scoreDiv = document.getElementById('score');
+  scoreDiv.textContent = correctCount + ' / ' + inputs.length + ' bonnes réponses';
+  scoreDiv.style.color = correctCount === inputs.length ? '#16A34A' : '#DC2626';
+}
+
+function reinitialiser() {
+  document.querySelectorAll('input.trou').forEach(input => {
+    input.value = '';
+    input.classList.remove('correct', 'incorrect');
+  });
+  document.getElementById('score').textContent = '';
+}
+</script>
+
+</body>
+</html>
