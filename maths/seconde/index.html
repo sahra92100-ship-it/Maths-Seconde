@@ -1,14 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Mathématiques — Seconde</title>
+<meta charset="UTF-8">
+<title>Seconde — Choisir une matière</title>
+<style>
+  :root {
+    --indigo: #312E81;
+    --bleu: #0369A1;
+    --vert: #166534;
+    --orange: #B45309;
+    --teal: #0D9488;
+    --texte: #1E293B;
+    --texte-secondaire: #64748B;
+    --fond: #F8FAFC;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+    margin: 0;
+  }
+  header {
+    background: linear-gradient(135deg, var(--indigo), var(--bleu));
+    color: white;
+    padding: 60px 30px 45px;
+    text-align: center;
+  }
+  .fil-ariane {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 8px;
+  }
+  .fil-ariane a { color: white; text-decoration: underline; }
+  header h1 { font-size: 36px; margin: 8px 0 8px; }
+  header p { font-size: 16px; opacity: 0.9; }
+
+  main {
+    max-width: 900px;
+    margin: -25px auto 0;
+    padding: 0 20px 70px;
+  }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+
+  .carte-matiere {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(15,23,42,0.12);
+    padding: 26px 22px;
+    text-decoration: none;
+    color: var(--texte);
+    text-align: center;
+    border-top: 6px solid var(--bleu);
+    transition: transform 0.15s ease;
+  }
+  .carte-matiere:hover { transform: translateY(-4px); }
+  .carte-matiere.indisponible {
+    opacity: 0.5;
+    pointer-events: none;
+    border-top-color: #CBD5E1;
+  }
+  .carte-matiere.maths { border-top-color: var(--bleu); }
+  .carte-matiere.physique { border-top-color: var(--teal); }
+
+  .emoji { font-size: 36px; margin-bottom: 8px; }
+  .titre-matiere {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--indigo);
+    margin-bottom: 6px;
+  }
+  .statut {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .statut.dispo { background: #F0FDF4; color: var(--vert); }
+  .statut.venir { background: #F1F5F9; color: var(--texte-secondaire); }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: var(--texte-secondaire);
+  }
+</style>
 </head>
 <body>
-    <h1>Mathématiques — Seconde</h1>
 
-    <a href="chapitre-01/index.html">
-        Chapitre 1 — Les ensembles de nombres
+<header>
+  <div class="fil-ariane"><a href="../index.html">Accueil</a> / Seconde</div>
+  <h1>Seconde générale et technologique</h1>
+  <p>Choisis une matière pour accéder aux chapitres.</p>
+</header>
+
+<main>
+  <div class="grille">
+    <a class="carte-matiere maths" href="Mathematiques/index.html">
+      <div class="emoji">📐</div>
+      <div class="titre-matiere">Mathématiques</div>
+      <span class="statut dispo">2 chapitres disponibles</span>
     </a>
+    <a class="carte-matiere physique" href="Physique-Chimie/index.html">
+      <div class="emoji">🧪</div>
+      <div class="titre-matiere">Physique-Chimie</div>
+      <span class="statut dispo">1 chapitre disponible</span>
+    </a>
+    <div class="carte-matiere indisponible">
+      <div class="emoji">📖</div>
+      <div class="titre-matiere">Français</div>
+      <span class="statut venir">À venir</span>
+    </div>
+    <div class="carte-matiere indisponible">
+      <div class="emoji">🌍</div>
+      <div class="titre-matiere">Histoire-Géographie</div>
+      <span class="statut venir">À venir</span>
+    </div>
+    <div class="carte-matiere indisponible">
+      <div class="emoji">🇬🇧</div>
+      <div class="titre-matiere">Anglais</div>
+      <span class="statut venir">À venir</span>
+    </div>
+    <div class="carte-matiere indisponible">
+      <div class="emoji">🧬</div>
+      <div class="titre-matiere">SVT</div>
+      <span class="statut venir">À venir</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Seconde générale et technologique · Soutien scolaire
+</footer>
+
 </body>
 </html>
