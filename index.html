@@ -1,190 +1,373 @@
-bash
-
-cat > /home/claude/index-chapitre1.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Chapitre 1 — Ensembles de nombres</title>
-<style>
-  :root {
-    --indigo: #312E81;
-    --bleu: #0369A1;
-    --vert: #166534;
-    --orange: #B45309;
-    --teal: #0D9488;
-    --texte: #1E293B;
-    --texte-secondaire: #64748B;
-    --fond: #F8FAFC;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background: var(--fond);
-    color: var(--texte);
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: linear-gradient(135deg, var(--indigo), var(--bleu));
-    color: white;
-    padding: 50px 30px 40px;
-    text-align: center;
-  }
-  header .kicker {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-    opacity: 0.85;
-  }
-  header h1 {
-    font-size: 34px;
-    margin: 10px 0 6px;
-  }
-  header p { font-size: 16px; opacity: 0.9; margin: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 70px;
-  }
+    <title>Maths Premium — Accueil</title>
 
-  .seance {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
-    padding: 26px 30px;
-    margin-bottom: 26px;
-    border-left: 8px solid var(--bleu);
-  }
-  .seance h2 {
-    font-size: 22px;
-    margin: 0 0 6px;
-    color: var(--indigo);
-  }
-  .seance .sous-titre {
-    font-size: 15px;
-    color: var(--texte-secondaire);
-    margin-bottom: 18px;
-  }
+    <style>
+        :root {
+            --indigo: #312E81;
+            --bleu: #0B4F6C;
+            --chapitre-fond: #F1F5FF;
+            --chapitre-numero: #252285;
+            --chapitre-titre: #0369A1;
+            --texte: #1E293B;
+            --texte-secondaire: #64748B;
+            --bordure: #E2E8F0;
+            --fond: #F8FAFC;
+            --blanc: #FFFFFF;
+            --rayon: 14px;
+            --ombre: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
 
-  .ressources {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .lien {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    border: 2px solid transparent;
-    transition: transform 0.15s ease;
-  }
-  .lien:hover { transform: translateY(-2px); }
+        * {
+            box-sizing: border-box;
+        }
 
-  .lien.cours { background: #EFF6FF; color: var(--bleu); border-color: var(--bleu); }
-  .lien.exercice { background: #FFFBEB; color: var(--orange); border-color: var(--orange); }
-  .lien.carte { background: #F0FDF4; color: var(--vert); border-color: var(--vert); }
-  .lien.schema { background: #F0FDFA; color: var(--teal); border-color: var(--teal); }
+        body {
+            margin: 0;
+            background: var(--fond);
+            color: var(--texte);
+            font-family: Arial, sans-serif;
+        }
 
-  .a-venir {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    background: #F1F5F9;
-    color: var(--texte-secondaire);
-    border: 2px dashed #CBD5E1;
-  }
+        .page {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
 
-  .bilan {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
-    padding: 26px 30px;
-    border-left: 8px solid var(--indigo);
-    text-align: center;
-  }
-  .bilan h2 { color: var(--indigo); margin-top: 0; }
+        header {
+            padding: 45px 0 25px;
+        }
 
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 13px;
-    color: var(--texte-secondaire);
-  }
-</style>
+        .kicker {
+            display: block;
+            margin-bottom: 8px;
+
+            color: var(--chapitre-numero);
+
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        header h1 {
+            margin: 0;
+
+            color: var(--indigo);
+
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        .intro {
+            padding: 55px 0 45px;
+        }
+
+        .intro h2 {
+            margin: 0 0 18px;
+
+            color: var(--chapitre-numero);
+
+            font-size: 52px;
+            line-height: 1.1;
+        }
+
+        .intro p {
+            max-width: 700px;
+            margin: 0;
+
+            color: var(--texte-secondaire);
+
+            font-size: 21px;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            margin: 20px 0 25px;
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 12px;
+
+            background: var(--chapitre-fond);
+            color: var(--chapitre-numero);
+
+            font-weight: 800;
+        }
+
+        .section-title h2 {
+            margin: 0;
+
+            color: var(--bleu);
+
+            font-size: 30px;
+        }
+
+        .section-title p {
+            margin: 2px 0 0;
+
+            color: var(--texte-secondaire);
+        }
+
+        .card {
+            display: block;
+
+            padding: 30px;
+
+            border: 1px solid var(--bordure);
+            border-radius: var(--rayon);
+
+            background: var(--blanc);
+            box-shadow: var(--ombre);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                border-color .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+
+            border-color: var(--chapitre-titre);
+
+            box-shadow:
+                0 10px 25px rgba(15, 23, 42, 0.12);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 6px 13px;
+
+            border-radius: 20px;
+
+            background: var(--chapitre-titre);
+            color: white;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .arrow {
+            color: var(--chapitre-titre);
+            font-size: 25px;
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+
+            color: var(--chapitre-numero);
+
+            font-size: 32px;
+        }
+
+        .card p {
+            max-width: 650px;
+            margin: 0;
+
+            color: var(--texte-secondaire);
+
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 28px;
+            padding-top: 18px;
+
+            border-top: 1px solid var(--bordure);
+
+            color: var(--texte-secondaire);
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .access {
+            color: var(--chapitre-titre);
+            font-weight: 800;
+        }
+
+        .future {
+            margin: 60px 0 70px;
+            padding: 25px 30px;
+
+            border-left: 8px solid var(--indigo);
+            border-radius: var(--rayon);
+
+            background: var(--chapitre-fond);
+        }
+
+        .future h2 {
+            margin: 0 0 8px;
+
+            color: var(--indigo);
+
+            font-size: 25px;
+        }
+
+        .future p {
+            margin: 0;
+
+            color: var(--texte-secondaire);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 25px 0 30px;
+
+            border-top: 1px solid var(--bordure);
+
+            color: var(--texte-secondaire);
+
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+
+            .intro h2 {
+                font-size: 40px;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-  <div class="kicker">Thème 1 · Mathématiques Seconde</div>
-  <h1>Chapitre 1 — Ensembles de nombres</h1>
-  <p>Ensembles N, Z, D, Q, R · Intervalles · Union et intersection · Valeur absolue</p>
-</header>
+<div class="page">
 
-<main>
+    <header>
+        <span class="kicker">Ressources pédagogiques</span>
+        <h1>Maths Premium</h1>
+    </header>
 
-  <div class="seance">
-    <h2>Séance 1 — Ensembles N, Z, D, Q, R et inclusions</h2>
-    <p class="sous-titre">Support de cours complet (définitions, méthode, exemple guidé, exercices).</p>
-    <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-01-Ensembles-de-nombres.md">📘 Support de cours</a>
-      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
-    </div>
-  </div>
+    <main>
 
-  <div class="seance">
-    <h2>Séance 2 — Intervalles de R, union et intersection</h2>
-    <p class="sous-titre">Support de cours + schéma illustré de l'union et de l'intersection d'intervalles.</p>
-    <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-02-Intervalles.md">📘 Support de cours</a>
-      <a class="lien schema" href="schema-intervalles-union-intersection.svg">📐 Schéma union/intersection</a>
-      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
-    </div>
-  </div>
+        <section class="intro">
 
-  <div class="seance">
-    <h2>Séance 3 — Valeur absolue</h2>
-    <p class="sous-titre">Support de cours, exercices interactifs avec correction en direct et carte mentale à remplir.</p>
-    <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-03-Valeur-absolue.md">📘 Support de cours</a>
-      <a class="lien exercice" href="exercices-valeur-absolue-interactif.html">✏️ Exercices interactifs</a>
-      <a class="lien carte" href="carte-mentale-valeur-absolue-interactive.html">🧠 Carte mentale à compléter</a>
-    </div>
-  </div>
+            <span class="kicker">Mathématiques</span>
 
-  <div class="bilan">
-    <h2>🗺️ Bilan du chapitre</h2>
-    <p>Carte mentale récapitulative des 5 notions clés du chapitre.</p>
-    <div class="ressources" style="justify-content:center;">
-      <a class="lien carte" href="chapitre1-maths-carte-mentale.svg">🧠 Voir la carte mentale complète</a>
-    </div>
-  </div>
+            <h2>
+                Apprendre,<br>
+                comprendre,<br>
+                progresser.
+            </h2>
 
-</main>
+            <p>
+                Un espace de travail structuré pour retrouver les cours,
+                s'entraîner, vérifier ses connaissances et suivre sa progression.
+            </p>
 
-<footer>
-  Chapitre 1 — Mathématiques Seconde · Soutien scolaire
-</footer>
+        </section>
+
+
+        <section>
+
+            <div class="section-title">
+
+                <span class="section-number">01</span>
+
+                <div>
+                    <h2>Choisir son niveau</h2>
+                    <p>Les ressources disponibles en mathématiques</p>
+                </div>
+
+            </div>
+
+
+            <a href="seconde/index.html" class="card">
+
+                <div class="card-top">
+
+                    <span class="badge">DISPONIBLE</span>
+
+                    <span class="arrow">→</span>
+
+                </div>
+
+                <h3>Seconde</h3>
+
+                <p>
+                    Retrouvez l'ensemble des chapitres de mathématiques
+                    de Seconde, organisés pour progresser pas à pas.
+                </p>
+
+                <div class="card-footer">
+
+                    <span>12 chapitres</span>
+
+                    <span class="access">
+                        Accéder à la Seconde →
+                    </span>
+
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <section class="future">
+
+            <h2>Première et Terminale</h2>
+
+            <p>
+                Les ressources seront ajoutées progressivement.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <span>Maths Premium</span>
+
+        <span>Ressources pédagogiques numériques</span>
+
+    </footer>
+
+</div>
 
 </body>
 </html>
-HTMLEOF
-cp /home/claude/index-chapitre1.html /mnt/user-data/outputs/
-Output
-
-exit code 0
-
-
-
-
-
