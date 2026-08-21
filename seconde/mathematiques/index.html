@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Soutien scolaire — Mathématiques Seconde</title>
+
 <style>
   :root {
     --indigo: #312E81;
@@ -11,10 +12,16 @@
     --orange: #B45309;
     --teal: #0D9488;
     --rouge: #B91C1C;
+
     --texte: #1E293B;
     --texte-secondaire: #64748B;
     --fond: #F8FAFC;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: Arial, sans-serif;
     background: var(--fond);
@@ -22,12 +29,29 @@
     margin: 0;
     padding: 0;
   }
+
+  /* ========================================
+     EN-TÊTE
+  ======================================== */
+
   header {
     background: linear-gradient(135deg, var(--indigo), var(--bleu));
     color: white;
-    padding: 60px 30px 45px;
+    padding: 55px 30px 45px;
     text-align: center;
   }
+
+  .fil-ariane {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 12px;
+  }
+
+  .fil-ariane a {
+    color: white;
+    text-decoration: underline;
+  }
+
   header .kicker {
     font-size: 14px;
     text-transform: uppercase;
@@ -35,19 +59,26 @@
     font-weight: 700;
     opacity: 0.85;
   }
+
   header h1 {
     font-size: 38px;
     margin: 10px 0 8px;
   }
+
   header p {
     font-size: 17px;
     opacity: 0.9;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
+    line-height: 1.5;
   }
 
+  /* ========================================
+     CONTENU
+  ======================================== */
+
   main {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
     padding: 45px 20px 80px;
   }
@@ -55,6 +86,7 @@
   .domaine {
     margin-bottom: 44px;
   }
+
   .domaine h2 {
     font-size: 20px;
     color: var(--indigo);
@@ -63,9 +95,13 @@
     margin-bottom: 20px;
   }
 
+  /* ========================================
+     GRILLE DES CHAPITRES
+  ======================================== */
+
   .grille {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 18px;
   }
 
@@ -73,14 +109,25 @@
     background: white;
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+
     padding: 20px 22px;
+
     text-decoration: none;
     color: var(--texte);
+
     display: block;
+
     border-left: 6px solid var(--bleu);
-    transition: transform 0.15s ease;
+
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
   }
-  .carte-chapitre:hover { transform: translateY(-3px); }
+
+  .carte-chapitre:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(15,23,42,0.12);
+  }
 
   .carte-chapitre.indisponible {
     opacity: 0.55;
@@ -88,157 +135,427 @@
     border-left-color: #CBD5E1;
   }
 
+  /* ========================================
+     INFORMATIONS DU CHAPITRE
+  ======================================== */
+
   .numero {
     font-size: 13px;
     font-weight: 700;
     color: var(--texte-secondaire);
+
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
+
   .titre-chapitre {
     font-size: 17px;
     font-weight: 800;
+
     margin: 4px 0 8px;
+
     color: var(--indigo);
+
+    line-height: 1.3;
   }
+
   .statut {
     display: inline-block;
+
     padding: 3px 10px;
+
     border-radius: 12px;
+
     font-size: 12px;
     font-weight: 700;
   }
-  .statut.dispo { background: #F0FDF4; color: var(--vert); }
-  .statut.partiel { background: #FFFBEB; color: var(--orange); }
-  .statut.venir { background: #F1F5F9; color: var(--texte-secondaire); }
+
+  .statut.dispo {
+    background: #F0FDF4;
+    color: var(--vert);
+  }
+
+  .statut.partiel {
+    background: #FFFBEB;
+    color: var(--orange);
+  }
+
+  .statut.venir {
+    background: #F1F5F9;
+    color: var(--texte-secondaire);
+  }
+
+  /* ========================================
+     COULEURS PAR DOMAINE
+  ======================================== */
+
+  .domaine-nombres .carte-chapitre {
+    border-left-color: var(--bleu);
+  }
+
+  .domaine-fonctions .carte-chapitre {
+    border-left-color: var(--indigo);
+  }
+
+  .domaine-geometrie .carte-chapitre {
+    border-left-color: var(--teal);
+  }
+
+  .domaine-stats .carte-chapitre {
+    border-left-color: var(--orange);
+  }
+
+  .domaine-algo .carte-chapitre {
+    border-left-color: var(--vert);
+  }
+
+  /* ========================================
+     PIED DE PAGE
+  ======================================== */
 
   footer {
     text-align: center;
     padding: 24px;
+
     font-size: 13px;
     color: var(--texte-secondaire);
   }
+
+  /* ========================================
+     MOBILE
+  ======================================== */
+
+  @media (max-width: 600px) {
+
+    header {
+      padding: 40px 20px 35px;
+    }
+
+    header h1 {
+      font-size: 30px;
+    }
+
+    header p {
+      font-size: 15px;
+    }
+
+    main {
+      padding: 35px 15px 60px;
+    }
+
+    .grille {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
+
 <body>
 
 <header>
+
+  <div class="fil-ariane">
+    <a href="../../index.html">Accueil</a>
+    /
+    <a href="../index.html">Seconde</a>
+    /
+    Mathématiques
+  </div>
+
   <div class="kicker">Soutien scolaire</div>
+
   <h1>Mathématiques — Classe de Seconde</h1>
-  <p>15 chapitres, 48 séances de 55 min, cours + exercices interactifs + cartes mentales pour progresser durablement.</p>
+
+  <p>
+    Cours, exercices progressifs, méthodes, cartes mentales
+    et activités interactives pour progresser durablement.
+  </p>
+
 </header>
+
 
 <main>
 
-  <div class="domaine">
+  <!-- ======================================
+       A — NOMBRES ET CALCULS
+  ======================================= -->
+
+  <div class="domaine domaine-nombres">
+
     <h2>A — Nombres et calculs</h2>
+
     <div class="grille">
-      <a class="carte-chapitre" href="Chapitre-01-Ensembles-de-nombres/index.html">
+
+      <a
+        class="carte-chapitre"
+        href="01-nombres-intervalles/index.html"
+      >
         <div class="numero">Chapitre 1</div>
-        <div class="titre-chapitre">Ensembles de nombres</div>
-        <span class="statut dispo">3/3 séances disponibles</span>
+        <div class="titre-chapitre">
+          Nombres et intervalles
+        </div>
+        <span class="statut dispo">
+          Disponible
+        </span>
       </a>
-      <a class="carte-chapitre" href="Chapitre-02-Calcul-numerique/index.html">
+
+
+      <a
+        class="carte-chapitre"
+        href="02-calcul-numerique-puissances/index.html"
+      >
         <div class="numero">Chapitre 2</div>
-        <div class="titre-chapitre">Calcul numérique</div>
-        <span class="statut partiel">1/3 séances disponibles</span>
+        <div class="titre-chapitre">
+          Calcul numérique, puissances et racines
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
       </a>
-      <div class="carte-chapitre indisponible">
+
+
+      <a
+        class="carte-chapitre"
+        href="03-calcul-litteral/index.html"
+      >
         <div class="numero">Chapitre 3</div>
-        <div class="titre-chapitre">Calcul littéral</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Calcul littéral
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="04-equations-inequations/index.html"
+      >
         <div class="numero">Chapitre 4</div>
-        <div class="titre-chapitre">Équations</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Équations et inéquations du 1er degré
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="05-equations-inequations-second-degre/index.html"
+      >
         <div class="numero">Chapitre 5</div>
-        <div class="titre-chapitre">Inéquations et signe d'une expression</div>
-        <span class="statut venir">À venir</span>
-      </div>
+        <div class="titre-chapitre">
+          Équations et inéquations du 2nd degré
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
     </div>
   </div>
 
-  <div class="domaine">
+
+  <!-- ======================================
+       B — FONCTIONS
+  ======================================= -->
+
+  <div class="domaine domaine-fonctions">
+
     <h2>B — Fonctions</h2>
+
     <div class="grille">
-      <div class="carte-chapitre indisponible">
+
+      <a
+        class="carte-chapitre"
+        href="06-fonctions/index.html"
+      >
         <div class="numero">Chapitre 6</div>
-        <div class="titre-chapitre">Généralités sur les fonctions</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Fonctions : généralités
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="07-fonctions-reference/index.html"
+      >
         <div class="numero">Chapitre 7</div>
-        <div class="titre-chapitre">Fonctions de référence</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
-        <div class="numero">Chapitre 8</div>
-        <div class="titre-chapitre">Fonction racine carrée et résolutions graphiques</div>
-        <span class="statut venir">À venir</span>
-      </div>
+        <div class="titre-chapitre">
+          Fonctions de référence
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
     </div>
   </div>
 
-  <div class="domaine">
+
+  <!-- ======================================
+       C — GÉOMÉTRIE
+  ======================================= -->
+
+  <div class="domaine domaine-geometrie">
+
     <h2>C — Géométrie</h2>
+
     <div class="grille">
-      <div class="carte-chapitre indisponible">
+
+      <a
+        class="carte-chapitre"
+        href="08-vecteurs-coordonnees/index.html"
+      >
+        <div class="numero">Chapitre 8</div>
+        <div class="titre-chapitre">
+          Vecteurs et coordonnées
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="09-droites-equations/index.html"
+      >
         <div class="numero">Chapitre 9</div>
-        <div class="titre-chapitre">Vecteurs</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Droites et équations
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="10-geometrie-plan/index.html"
+      >
         <div class="numero">Chapitre 10</div>
-        <div class="titre-chapitre">Repérage dans le plan</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Géométrie plane
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="11-geometrie-espace/index.html"
+      >
         <div class="numero">Chapitre 11</div>
-        <div class="titre-chapitre">Trigonométrie</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Géométrie dans l'espace
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="12-trigonometrie/index.html"
+      >
         <div class="numero">Chapitre 12</div>
-        <div class="titre-chapitre">Géométrie dans l'espace</div>
-        <span class="statut venir">À venir</span>
-      </div>
+        <div class="titre-chapitre">
+          Trigonométrie
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
     </div>
   </div>
 
-  <div class="domaine">
+
+  <!-- ======================================
+       D — STATISTIQUES ET PROBABILITÉS
+  ======================================= -->
+
+  <div class="domaine domaine-stats">
+
     <h2>D — Statistiques et probabilités</h2>
+
     <div class="grille">
-      <div class="carte-chapitre indisponible">
+
+      <a
+        class="carte-chapitre"
+        href="13-statistiques/index.html"
+      >
         <div class="numero">Chapitre 13</div>
-        <div class="titre-chapitre">Statistiques descriptives</div>
-        <span class="statut venir">À venir</span>
-      </div>
-      <div class="carte-chapitre indisponible">
+        <div class="titre-chapitre">
+          Statistiques descriptives
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
+
+      <a
+        class="carte-chapitre"
+        href="14-probabilites/index.html"
+      >
         <div class="numero">Chapitre 14</div>
-        <div class="titre-chapitre">Probabilités</div>
-        <span class="statut venir">À venir</span>
-      </div>
+        <div class="titre-chapitre">
+          Probabilités et échantillonnage
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
     </div>
   </div>
 
-  <div class="domaine">
-    <h2>E — Algorithmique</h2>
+
+  <!-- ======================================
+       E — ALGORITHMIQUE
+  ======================================= -->
+
+  <div class="domaine domaine-algo">
+
+    <h2>E — Algorithmique et programmation</h2>
+
     <div class="grille">
-      <div class="carte-chapitre indisponible">
+
+      <a
+        class="carte-chapitre"
+        href="15-algorithmique-programmation/index.html"
+      >
         <div class="numero">Chapitre 15</div>
-        <div class="titre-chapitre">Algorithmique et Python</div>
-        <span class="statut venir">À venir</span>
-      </div>
+        <div class="titre-chapitre">
+          Algorithmique et programmation
+        </div>
+        <span class="statut venir">
+          À venir
+        </span>
+      </a>
+
     </div>
   </div>
 
 </main>
 
+
 <footer>
-  Soutien scolaire — Mathématiques Seconde · Mis à jour au fil des séances
+  Mathématiques — Seconde générale et technologique
+  · Soutien scolaire
 </footer>
 
 </body>
