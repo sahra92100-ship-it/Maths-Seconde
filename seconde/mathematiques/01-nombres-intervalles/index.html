@@ -2,71 +2,313 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Chapitre 1 — Ensembles de nombres</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapitre 1 — Ensembles et intervalles de nombres</title>
+
 <style>
-  :root{--indigo:#312E81;--bleu:#0369A1;--vert:#166534;--orange:#B45309;--teal:#0D9488;--texte:#1E293B;--texte2:#64748B;--fond:#F8FAFC;}
-  body{font-family:Arial,sans-serif;background:var(--fond);color:var(--texte);margin:0;}
-  header{background:linear-gradient(135deg,var(--indigo),var(--bleu));color:white;padding:50px 30px 40px;text-align:center;}
-  header h1{font-size:32px;margin:8px 0 4px;}
-  header p{font-size:15px;opacity:.9;margin:0;}
-  main{max-width:900px;margin:0 auto;padding:36px 20px 70px;}
-  .notion{background:white;border-radius:16px;box-shadow:0 4px 14px rgba(15,23,42,.08);padding:22px 26px;margin-bottom:20px;border-left:8px solid var(--bleu);}
-  .notion h2{font-size:20px;margin:0 0 14px;color:var(--indigo);}
-  .ressources{display:flex;flex-wrap:wrap;gap:10px;}
-  .lien{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;border:2px solid;}
-  .quiz{background:#FFFBEB;color:var(--orange);border-color:var(--orange);}
-  .cours{background:#EFF6FF;color:var(--bleu);border-color:var(--bleu);}
-  .exo{background:#F0FDFA;color:var(--teal);border-color:var(--teal);}
-  .carte{background:#F0FDF4;color:var(--vert);border-color:var(--vert);}
+  :root {
+    --indigo: #312E81;
+    --bleu: #0369A1;
+    --vert: #166534;
+    --orange: #B45309;
+    --teal: #0D9488;
+    --texte: #1E293B;
+    --texte2: #64748B;
+    --fond: #F8FAFC;
+    --blanc: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+    margin: 0;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--indigo), var(--bleu));
+    color: white;
+    padding: 48px 25px 42px;
+    text-align: center;
+  }
+
+  .fil-ariane {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+
+  .fil-ariane a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  header h1 {
+    font-size: 34px;
+    margin: 8px 0;
+  }
+
+  header p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  main {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 38px 20px 70px;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .intro h2 {
+    color: var(--indigo);
+    font-size: 22px;
+    margin: 0 0 7px;
+  }
+
+  .intro p {
+    color: var(--texte2);
+    margin: 0;
+  }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .notion {
+    background: var(--blanc);
+    border-radius: 16px;
+    box-shadow: 0 5px 16px rgba(15,23,42,0.08);
+    padding: 24px;
+    text-decoration: none;
+    color: var(--texte);
+    border-left: 7px solid var(--bleu);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .notion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(15,23,42,0.12);
+  }
+
+  .notion:nth-child(2) {
+    border-left-color: var(--vert);
+  }
+
+  .notion:nth-child(3) {
+    border-left-color: var(--orange);
+  }
+
+  .notion:nth-child(4) {
+    border-left-color: var(--teal);
+  }
+
+  .numero {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--texte2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .notion h3 {
+    font-size: 20px;
+    color: var(--indigo);
+    margin: 7px 0 8px;
+  }
+
+  .notion p {
+    font-size: 14px;
+    color: var(--texte2);
+    margin: 0 0 17px;
+  }
+
+  .action {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 9px;
+    background: #EFF6FF;
+    color: var(--bleu);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .bilan {
+    margin-top: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 16px rgba(15,23,42,0.08);
+    padding: 23px 25px;
+    border-left: 7px solid var(--indigo);
+  }
+
+  .bilan h2 {
+    color: var(--indigo);
+    font-size: 21px;
+    margin: 0 0 7px;
+  }
+
+  .bilan p {
+    color: var(--texte2);
+    margin: 0 0 15px;
+  }
+
+  .bilan a {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 9px;
+    background: #EEF2FF;
+    color: var(--indigo);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--texte2);
+    font-size: 13px;
+  }
+
+  @media (max-width: 700px) {
+    .grille {
+      grid-template-columns: 1fr;
+    }
+
+    header h1 {
+      font-size: 29px;
+    }
+  }
 </style>
 </head>
+
 <body>
+
 <header>
-  <h1>Chapitre 1 — Ensembles de nombres</h1>
-  <p>4 notions : ensembles, intervalles, union/intersection, valeur absolue</p>
+
+  <div class="fil-ariane">
+    <a href="../../index.html">Mathématiques</a> / Chapitre 1
+  </div>
+
+  <h1>Chapitre 1 — Ensembles et intervalles de nombres</h1>
+
+  <p>
+    Les ensembles de nombres, les intervalles de ℝ,
+    leur union et leur intersection, et la valeur absolue.
+  </p>
+
 </header>
+
 <main>
 
-  <div class="notion">
-    <h2>① Ensembles de nombres</h2>
-    <div class="ressources">
-      <a class="lien quiz" href="01-ensembles/quiz.html">🎯 Quiz</a>
-      <a class="lien cours" href="01-ensembles/cours.md">📘 Cours</a>
-      <a class="lien exo" href="01-ensembles/exercices.html">✏️ Exercices</a>
-      <a class="lien carte" href="01-ensembles/carte-mentale.html">🧠 Carte mentale</a>
-    </div>
-  </div>
+  <section class="intro">
+    <h2>Choisis une notion</h2>
+    <p>
+      Chaque notion possède son propre cours, quiz, exercices
+      et carte mentale.
+    </p>
+  </section>
 
-  <div class="notion">
-    <h2>② Intervalles</h2>
-    <div class="ressources">
-      <a class="lien quiz" href="02-intervalles/quiz.html">🎯 Quiz</a>
-      <a class="lien cours" href="02-intervalles/cours.md">📘 Cours</a>
-      <a class="lien exo" href="02-intervalles/exercices.html">✏️ Exercices</a>
-      <a class="lien carte" href="02-intervalles/carte-mentale.html">🧠 Carte mentale</a>
-    </div>
-  </div>
+  <section class="grille">
 
-  <div class="notion">
-    <h2>③ Union et intersection</h2>
-    <div class="ressources">
-      <a class="lien quiz" href="03-union-intersection/quiz.html">🎯 Quiz</a>
-      <a class="lien cours" href="03-union-intersection/cours.md">📘 Cours</a>
-      <a class="lien exo" href="03-union-intersection/exercices.html">✏️ Exercices</a>
-      <a class="lien carte" href="03-union-intersection/carte-mentale.html">🧠 Carte mentale</a>
-    </div>
-  </div>
+    <a class="notion" href="01-ensembles/index.html">
 
-  <div class="notion">
-    <h2>④ Valeur absolue</h2>
-    <div class="ressources">
-      <a class="lien quiz" href="04-valeur-absolue/quiz.html">🎯 Quiz</a>
-      <a class="lien cours" href="04-valeur-absolue/cours.md">📘 Cours</a>
-      <a class="lien exo" href="exercices-valeur-absolue-interactif.html">✏️ Exercices</a>
-      <a class="lien carte" href="carte-mentale-valeur-absolue-interactive.html">🧠 Carte mentale</a>
-    </div>
-  </div>
+      <div class="numero">Notion 1</div>
+
+      <h3>Ensembles de nombres</h3>
+
+      <p>
+        Découvrir ℕ, ℤ, 𝔻, ℚ et ℝ,
+        leurs caractéristiques et leurs inclusions.
+      </p>
+
+      <span class="action">Travailler cette notion →</span>
+
+    </a>
+
+
+    <a class="notion" href="02-intervalles/index.html">
+
+      <div class="numero">Notion 2</div>
+
+      <h3>Intervalles</h3>
+
+      <p>
+        Lire, représenter et écrire les intervalles
+        de nombres réels.
+      </p>
+
+      <span class="action">Travailler cette notion →</span>
+
+    </a>
+
+
+    <a class="notion" href="03-union-intersection/index.html">
+
+      <div class="numero">Notion 3</div>
+
+      <h3>Union et intersection</h3>
+
+      <p>
+        Déterminer et représenter l'union et l'intersection
+        d'intervalles.
+      </p>
+
+      <span class="action">Travailler cette notion →</span>
+
+    </a>
+
+
+    <a class="notion" href="04-valeur-absolue/index.html">
+
+      <div class="numero">Notion 4</div>
+
+      <h3>Valeur absolue</h3>
+
+      <p>
+        Comprendre la valeur absolue comme une distance
+        et l'utiliser avec les intervalles.
+      </p>
+
+      <span class="action">Travailler cette notion →</span>
+
+    </a>
+
+  </section>
+
+
+  <section class="bilan">
+
+    <h2>🏆 Bilan du chapitre</h2>
+
+    <p>
+      Vérifie ce que tu maîtrises et retrouve les notions
+      essentielles du chapitre.
+    </p>
+
+    <a href="bilan/index.html">
+      Accéder au bilan →
+    </a>
+
+  </section>
 
 </main>
+
+<footer>
+  Mathématiques Seconde · Chapitre 1
+  — Ensembles et intervalles de nombres
+</footer>
+
 </body>
 </html>
