@@ -1,190 +1,72 @@
-bash
-
-cat > /home/claude/index-chapitre1.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>Chapitre 1 — Ensembles de nombres</title>
 <style>
-  :root {
-    --indigo: #312E81;
-    --bleu: #0369A1;
-    --vert: #166534;
-    --orange: #B45309;
-    --teal: #0D9488;
-    --texte: #1E293B;
-    --texte-secondaire: #64748B;
-    --fond: #F8FAFC;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background: var(--fond);
-    color: var(--texte);
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: linear-gradient(135deg, var(--indigo), var(--bleu));
-    color: white;
-    padding: 50px 30px 40px;
-    text-align: center;
-  }
-  header .kicker {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-    opacity: 0.85;
-  }
-  header h1 {
-    font-size: 34px;
-    margin: 10px 0 6px;
-  }
-  header p { font-size: 16px; opacity: 0.9; margin: 0; }
-
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 70px;
-  }
-
-  .seance {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
-    padding: 26px 30px;
-    margin-bottom: 26px;
-    border-left: 8px solid var(--bleu);
-  }
-  .seance h2 {
-    font-size: 22px;
-    margin: 0 0 6px;
-    color: var(--indigo);
-  }
-  .seance .sous-titre {
-    font-size: 15px;
-    color: var(--texte-secondaire);
-    margin-bottom: 18px;
-  }
-
-  .ressources {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .lien {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    border: 2px solid transparent;
-    transition: transform 0.15s ease;
-  }
-  .lien:hover { transform: translateY(-2px); }
-
-  .lien.cours { background: #EFF6FF; color: var(--bleu); border-color: var(--bleu); }
-  .lien.exercice { background: #FFFBEB; color: var(--orange); border-color: var(--orange); }
-  .lien.carte { background: #F0FDF4; color: var(--vert); border-color: var(--vert); }
-  .lien.schema { background: #F0FDFA; color: var(--teal); border-color: var(--teal); }
-
-  .a-venir {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    background: #F1F5F9;
-    color: var(--texte-secondaire);
-    border: 2px dashed #CBD5E1;
-  }
-
-  .bilan {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 14px rgba(15,23,42,0.08);
-    padding: 26px 30px;
-    border-left: 8px solid var(--indigo);
-    text-align: center;
-  }
-  .bilan h2 { color: var(--indigo); margin-top: 0; }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 13px;
-    color: var(--texte-secondaire);
-  }
+  :root{--indigo:#312E81;--bleu:#0369A1;--vert:#166534;--orange:#B45309;--teal:#0D9488;--texte:#1E293B;--texte2:#64748B;--fond:#F8FAFC;}
+  body{font-family:Arial,sans-serif;background:var(--fond);color:var(--texte);margin:0;}
+  header{background:linear-gradient(135deg,var(--indigo),var(--bleu));color:white;padding:50px 30px 40px;text-align:center;}
+  header h1{font-size:32px;margin:8px 0 4px;}
+  header p{font-size:15px;opacity:.9;margin:0;}
+  main{max-width:900px;margin:0 auto;padding:36px 20px 70px;}
+  .notion{background:white;border-radius:16px;box-shadow:0 4px 14px rgba(15,23,42,.08);padding:22px 26px;margin-bottom:20px;border-left:8px solid var(--bleu);}
+  .notion h2{font-size:20px;margin:0 0 14px;color:var(--indigo);}
+  .ressources{display:flex;flex-wrap:wrap;gap:10px;}
+  .lien{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;border:2px solid;}
+  .quiz{background:#FFFBEB;color:var(--orange);border-color:var(--orange);}
+  .cours{background:#EFF6FF;color:var(--bleu);border-color:var(--bleu);}
+  .exo{background:#F0FDFA;color:var(--teal);border-color:var(--teal);}
+  .carte{background:#F0FDF4;color:var(--vert);border-color:var(--vert);}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="kicker">Thème 1 · Mathématiques Seconde</div>
   <h1>Chapitre 1 — Ensembles de nombres</h1>
-  <p>Ensembles N, Z, D, Q, R · Intervalles · Union et intersection · Valeur absolue</p>
+  <p>4 notions : ensembles, intervalles, union/intersection, valeur absolue</p>
 </header>
-
 <main>
 
-  <div class="seance">
-    <h2>Séance 1 — Ensembles N, Z, D, Q, R et inclusions</h2>
-    <p class="sous-titre">Support de cours complet (définitions, méthode, exemple guidé, exercices).</p>
+  <div class="notion">
+    <h2>① Ensembles de nombres</h2>
     <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-01-Ensembles-de-nombres.md">📘 Support de cours</a>
-      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
+      <a class="lien quiz" href="01-ensembles/quiz.html">🎯 Quiz</a>
+      <a class="lien cours" href="01-ensembles/cours.md">📘 Cours</a>
+      <a class="lien exo" href="01-ensembles/exercices.html">✏️ Exercices</a>
+      <a class="lien carte" href="01-ensembles/carte-mentale.html">🧠 Carte mentale</a>
     </div>
   </div>
 
-  <div class="seance">
-    <h2>Séance 2 — Intervalles de R, union et intersection</h2>
-    <p class="sous-titre">Support de cours + schéma illustré de l'union et de l'intersection d'intervalles.</p>
+  <div class="notion">
+    <h2>② Intervalles</h2>
     <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-02-Intervalles.md">📘 Support de cours</a>
-      <a class="lien schema" href="schema-intervalles-union-intersection.svg">📐 Schéma union/intersection</a>
-      <span class="a-venir">🧩 Exercices interactifs (à venir)</span>
+      <a class="lien quiz" href="02-intervalles/quiz.html">🎯 Quiz</a>
+      <a class="lien cours" href="02-intervalles/cours.md">📘 Cours</a>
+      <a class="lien exo" href="02-intervalles/exercices.html">✏️ Exercices</a>
+      <a class="lien carte" href="02-intervalles/carte-mentale.html">🧠 Carte mentale</a>
     </div>
   </div>
 
-  <div class="seance">
-    <h2>Séance 3 — Valeur absolue</h2>
-    <p class="sous-titre">Support de cours, exercices interactifs avec correction en direct et carte mentale à remplir.</p>
+  <div class="notion">
+    <h2>③ Union et intersection</h2>
     <div class="ressources">
-      <a class="lien cours" href="Chapitre-01-Ensembles-de-nombres/Seance-03-Valeur-absolue.md">📘 Support de cours</a>
-      <a class="lien exercice" href="exercices-valeur-absolue-interactif.html">✏️ Exercices interactifs</a>
-      <a class="lien carte" href="carte-mentale-valeur-absolue-interactive.html">🧠 Carte mentale à compléter</a>
+      <a class="lien quiz" href="03-union-intersection/quiz.html">🎯 Quiz</a>
+      <a class="lien cours" href="03-union-intersection/cours.md">📘 Cours</a>
+      <a class="lien exo" href="03-union-intersection/exercices.html">✏️ Exercices</a>
+      <a class="lien carte" href="03-union-intersection/carte-mentale.html">🧠 Carte mentale</a>
     </div>
   </div>
 
-  <div class="bilan">
-    <h2>🗺️ Bilan du chapitre</h2>
-    <p>Carte mentale récapitulative des 5 notions clés du chapitre.</p>
-    <div class="ressources" style="justify-content:center;">
-      <a class="lien carte" href="chapitre1-maths-carte-mentale.svg">🧠 Voir la carte mentale complète</a>
+  <div class="notion">
+    <h2>④ Valeur absolue</h2>
+    <div class="ressources">
+      <a class="lien quiz" href="04-valeur-absolue/quiz.html">🎯 Quiz</a>
+      <a class="lien cours" href="04-valeur-absolue/cours.md">📘 Cours</a>
+      <a class="lien exo" href="exercices-valeur-absolue-interactif.html">✏️ Exercices</a>
+      <a class="lien carte" href="carte-mentale-valeur-absolue-interactive.html">🧠 Carte mentale</a>
     </div>
   </div>
 
 </main>
-
-<footer>
-  Chapitre 1 — Mathématiques Seconde · Soutien scolaire
-</footer>
-
 </body>
 </html>
-HTMLEOF
-cp /home/claude/index-chapitre1.html /mnt/user-data/outputs/
-Output
-
-exit code 0
-
-
-
-
-
