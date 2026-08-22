@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ensembles de nombres — Mathématiques Seconde</title>
 
+<style>
+  :root {
+    --indigo: #312E81;
+    --bleu: #0369A1;
+    --vert: #166534;
+    --orange: #B45309;
+    --teal: #0D9488;
+    --texte: #1E293B;
+    --texte2: #64748B;
+    --fond: #F8FAFC;
+    --blanc: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+    margin: 0;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--indigo), var(--bleu));
+    color: white;
+    padding: 48px 25px 42px;
+    text-align: center;
+  }
+
+  .fil-ariane {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+
+  .fil-ariane a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  header h1 {
+    font-size: 34px;
+    margin: 8px 0;
+  }
+
+  header p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  main {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 38px 20px 70px;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .intro h2 {
+    color: var(--indigo);
+    font-size: 22px;
+    margin: 0 0 7px;
+  }
+
+  .intro p {
+    color: var(--texte2);
+    margin: 0;
+  }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ressource {
+    background: var(--blanc);
+    border-radius: 16px;
+    box-shadow: 0 5px 16px rgba(15,23,42,0.08);
+    padding: 26px;
+    text-decoration: none;
+    color: var(--texte);
+    border-left: 7px solid var(--bleu);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .ressource:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(15,23,42,0.12);
+  }
+
+  .ressource.quiz {
+    border-left-color: var(--orange);
+  }
+
+  .ressource.cours {
+    border-left-color: var(--bleu);
+  }
+
+  .ressource.exercices {
+    border-left-color: var(--teal);
+  }
+
+  .ressource.carte {
+    border-left-color: var(--vert);
+  }
+
+  .icone {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #EFF6FF;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .quiz .icone {
+    background: #FFF7ED;
+  }
+
+  .cours .icone {
+    background: #EFF6FF;
+  }
+
+  .exercices .icone {
+    background: #F0FDFA;
+  }
+
+  .carte .icone {
+    background: #F0FDF4;
+  }
+
+  .ressource h3 {
+    font-size: 20px;
+    color: var(--indigo);
+    margin: 0 0 8px;
+  }
+
+  .ressource p {
+    font-size: 14px;
+    color: var(--texte2);
+    margin: 0 0 18px;
+  }
+
+  .action {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    background: #EFF6FF;
+    color: var(--bleu);
+  }
+
+  .quiz .action {
+    background: #FFF7ED;
+    color: var(--orange);
+  }
+
+  .exercices .action {
+    background: #F0FDFA;
+    color: var(--teal);
+  }
+
+  .carte .action {
+    background: #F0FDF4;
+    color: var(--vert);
+  }
+
+  .retour {
+    margin-top: 22px;
+    text-align: center;
+  }
+
+  .retour a {
+    color: var(--indigo);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--texte2);
+    font-size: 13px;
+  }
+
+  @media (max-width: 700px) {
+    .grille {
+      grid-template-columns: 1fr;
+    }
+
+    header h1 {
+      font-size: 29px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="fil-ariane">
+    <a href="../../index.html">Chapitre 1</a> / Ensembles de nombres
+  </div>
+
+  <h1>Ensembles de nombres</h1>
+
+  <p>
+    ℕ, ℤ, 𝔻, ℚ et ℝ · caractéristiques et inclusions
+  </p>
+
+</header>
+
+<main>
+
+  <section class="intro">
+    <h2>Choisis ta ressource</h2>
+    <p>
+      Apprends la notion, vérifie tes connaissances et entraîne-toi.
+    </p>
+  </section>
+
+  <section class="grille">
+
+    <a class="ressource quiz" href="quiz/index.html">
+
+      <div class="icone">🎯</div>
+
+      <h3>Quiz</h3>
+
+      <p>
+        Teste tes connaissances sur les ensembles de nombres
+        et leurs inclusions.
+      </p>
+
+      <span class="action">Commencer le quiz →</span>
+
+    </a>
+
+
+    <a class="ressource cours" href="cours/index.html">
+
+      <div class="icone">📘</div>
+
+      <h3>Cours</h3>
+
+      <p>
+        Retrouve les définitions, les propriétés,
+        les méthodes et les exemples essentiels.
+      </p>
+
+      <span class="action">Ouvrir le cours →</span>
+
+    </a>
+
+
+    <a class="ressource exercices" href="exercices/index.html">
+
+      <div class="icone">✏️</div>
+
+      <h3>Exercices</h3>
+
+      <p>
+        Entraîne-toi progressivement et vérifie
+        tes réponses pour consolider tes acquis.
+      </p>
+
+      <span class="action">S'entraîner →</span>
+
+    </a>
+
+
+    <a class="ressource carte" href="carte-mentale/index.html">
+
+      <div class="icone">🧠</div>
+
+      <h3>Carte mentale</h3>
+
+      <p>
+        Visualise les notions essentielles et les liens
+        entre les différents ensembles de nombres.
+      </p>
+
+      <span class="action">Voir la carte →</span>
+
+    </a>
+
+  </section>
+
+
+  <div class="retour">
+    <a href="../index.html">← Retour aux notions du chapitre</a>
+  </div>
+
+</main>
+
+<footer>
+  Mathématiques Seconde · Chapitre 1 · Ensembles de nombres
+</footer>
+
+</body>
+</html>

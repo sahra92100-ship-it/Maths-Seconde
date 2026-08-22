@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cours — Ensembles de nombres</title>
+
+  <style>
+    :root {
+      --navy: #243447;
+      --blue: #3f6f9f;
+      --blue-light: #edf3f8;
+      --green: #4f8a67;
+      --green-light: #edf6f0;
+      --orange: #d58a3a;
+      --orange-light: #fff4e8;
+      --grey-100: #f5f6f7;
+      --grey-200: #e5e8eb;
+      --grey-500: #6c757d;
+      --white: #ffffff;
+
+      --shadow: 0 8px 24px rgba(36, 52, 71, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--navy);
+      background: var(--grey-100);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1050px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 60px;
+    }
+
+    /* =========================
+       EN-TÊTE
+       ========================= */
+
+    .hero {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 34px 38px;
+      box-shadow: var(--shadow);
+      border-left: 7px solid var(--blue);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--grey-500);
+      font-size: 17px;
+      max-width: 760px;
+    }
+
+    /* =========================
+       PLAN DU COURS
+       ========================= */
+
+    .section-title {
+      margin: 28px 0 14px;
+      font-size: 22px;
+    }
+
+    .notions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .notion {
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(36, 52, 71, 0.04);
+    }
+
+    .notion-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 34px;
+      height: 34px;
+
+      margin-bottom: 12px;
+
+      border-radius: 10px;
+      background: var(--blue-light);
+      color: var(--blue);
+
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .notion h2 {
+      margin: 0 0 7px;
+      font-size: 20px;
+    }
+
+    .notion p {
+      margin: 0;
+      color: var(--grey-500);
+      font-size: 14px;
+    }
+
+    /* =========================
+       BOUTON COURS
+       ========================= */
+
+    .action {
+      margin-top: 24px;
+
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+
+      padding: 24px;
+
+      box-shadow: 0 4px 14px rgba(36, 52, 71, 0.04);
+    }
+
+    .action h2 {
+      margin: 0 0 6px;
+      font-size: 21px;
+    }
+
+    .action p {
+      margin: 0 0 18px;
+      color: var(--grey-500);
+      font-size: 15px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px 20px;
+
+      border-radius: 10px;
+
+      background: var(--blue);
+      color: var(--white);
+
+      font-weight: 700;
+      font-size: 14px;
+
+      transition:
+        transform .15s ease,
+        opacity .15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      opacity: .92;
+    }
+
+    /* =========================
+       RAPPEL
+       ========================= */
+
+    .info {
+      margin-top: 18px;
+
+      background: var(--blue-light);
+      border-left: 5px solid var(--blue);
+
+      border-radius: 12px;
+
+      padding: 16px 18px;
+
+      color: var(--navy);
+      font-size: 14px;
+    }
+
+    .info strong {
+      color: var(--blue);
+    }
+
+    /* =========================
+       PIED DE PAGE
+       ========================= */
+
+    footer {
+      margin-top: 30px;
+
+      text-align: center;
+
+      color: var(--grey-500);
+      font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 720px) {
+
+      .page {
+        width: min(100% - 24px, 600px);
+        padding-top: 20px;
+      }
+
+      .hero {
+        padding: 26px 24px;
+      }
+
+      .notions {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         EN-TÊTE
+         ========================= -->
+
+    <section class="hero">
+
+      <p class="eyebrow">
+        Maths Premium · Seconde
+      </p>
+
+      <h1>
+        Cours — Ensembles et intervalles de nombres
+      </h1>
+
+      <p class="subtitle">
+        Retrouve ici le cours complet du chapitre, organisé autour des
+        notions essentielles à maîtriser.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         NOTIONS
+         ========================= -->
+
+    <h2 class="section-title">
+      Les notions du chapitre
+    </h2>
+
+
+    <section class="notions">
+
+
+      <article class="notion">
+
+        <div class="notion-number">
+          01
+        </div>
+
+        <h2>
+          Ensembles de nombres
+        </h2>
+
+        <p>
+          $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{D}$, $\mathbb{Q}$,
+          $\mathbb{R}$ et leurs inclusions.
+        </p>
+
+      </article>
+
+
+      <article class="notion">
+
+        <div class="notion-number">
+          02
+        </div>
+
+        <h2>
+          Intervalles de nombres
+        </h2>
+
+        <p>
+          Notations, bornes, intervalles ouverts et fermés
+          et représentation sur une droite graduée.
+        </p>
+
+      </article>
+
+
+      <article class="notion">
+
+        <div class="notion-number">
+          03
+        </div>
+
+        <h2>
+          Union et intersection
+        </h2>
+
+        <p>
+          Déterminer et représenter l'union et l'intersection
+          de deux intervalles.
+        </p>
+
+      </article>
+
+
+      <article class="notion">
+
+        <div class="notion-number">
+          04
+        </div>
+
+        <h2>
+          Valeur absolue
+        </h2>
+
+        <p>
+          Comprendre la valeur absolue comme une distance
+          et résoudre des conditions avec une valeur absolue.
+        </p>
+
+      </article>
+
+
+    </section>
+
+
+    <!-- =========================
+         ACCÈS AU COURS
+         ========================= -->
+
+    <section class="action">
+
+      <h2>
+        📘 Le cours complet
+      </h2>
+
+      <p>
+        Toutes les notions sont regroupées dans un même support
+        progressif avec définitions, exemples, méthodes et points
+        d'attention.
+      </p>
+
+      <!--
+        IMPORTANT :
+        Remplace le chemin ci-dessous lorsque la version HTML
+        du cours Marp sera générée.
+      -->
+
+      <a
+        class="button"
+        href="../../../../cours/chapitre-01-ensembles-nombres.html"
+      >
+        Ouvrir le cours →
+      </a>
+
+    </section>
+
+
+    <!-- =========================
+         CONSEIL
+         ========================= -->
+
+    <div class="info">
+
+      <strong>💡 Conseil :</strong>
+      commence par les ensembles de nombres puis avance
+      progressivement vers les intervalles, l'union et
+      l'intersection, puis la valeur absolue.
+
+    </div>
+
+
+    <footer>
+      Maths Premium · Seconde · Chapitre 1
+    </footer>
+
+  </main>
+
+</body>
+
+</html>
